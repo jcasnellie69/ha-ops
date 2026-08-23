@@ -1,0 +1,22 @@
+# D082226T2000 | HA-0002 | control-plane baseline: packages model, scoped recorder | JC | haos-vm
+homeassistant:
+  packages: !include_dir_named packages
+
+# Dashboards declared in YAML mode -> UI renders read-only (repo is truth)
+lovelace:
+  mode: yaml
+  resources: []
+
+# Recorder = short-retention buffer, NOT the archive (tier 1 of 3)
+recorder:
+  purge_keep_days: 7
+  include:
+    domains:
+      - light
+      - switch
+      - binary_sensor
+    entity_globs:
+      - sensor.*_current_power
+      - sensor.*_today_energy
+
+# Tier 3 collection (full-resolution -> external TSDB) configured under HA-0003

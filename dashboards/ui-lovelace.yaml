@@ -1,0 +1,12 @@
+# D082226T2000 | HA-0004 | control-plane dashboard baseline | JC | haos-vm
+# Control plane ONLY: room controls + energy summary.
+# All exploratory/analytics dashboarding belongs in dashboards/grafana/ (JSON exports).
+title: Home
+views:
+  - title: Rooms
+    path: rooms
+    cards: []
+  - title: Energy
+    path: energy
+    cards:
+      - type: energy-distribution
