@@ -1,0 +1,30 @@
+# D082626 | HA-0009 | p.p. claude-sonnet-5 for JC | ha-ops repo
+#
+# Wires the existing ./validate.sh (yamllint + ansible-lint, per AGENTS.md
+# §5 Pipeline "Validate" stage) into GitHub Actions as an actual required
+# status check. Runs the script unmodified -- this workflow does not
+# duplicate or reinterpret its logic.
+
+name: validate
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Install validators
+        run: pip install yamllint ansible-lint
+
+      - name: Run validate.sh
+        run: ./validate.sh

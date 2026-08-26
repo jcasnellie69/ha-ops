@@ -1,0 +1,88 @@
+# D082626 | HA-0009 | p.p. claude-sonnet-5 for JC | ha-ops repo
+#
+# Two tiers only, unlike the infra repo's three -- AGENTS.md sec5 already
+# mandates blocking human review for the whole Converge payload pipeline,
+# so this workflow does not introduce a fast-track exception to that
+# without an operator-approved amendment to AGENTS.md itself.
+#
+# Tier A (auto-merge): every changed file is .md, and none of them is
+#   AGENTS.md or LANES.md (those stay operator-only per their own rule
+#   regardless of file extension).
+# Tier C (everything else, default): hard-blocked from merging without
+#   @jcasnellie69's review by CODEOWNERS + branch protection.
+
+name: PR risk tiering
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  tier:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Determine tier from changed file paths
+        id: tier
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          files="$(gh api "repos/${REPO}/pulls/${PR_NUMBER}/files" --paginate --jq '.[].filename')"
+          echo "Changed files:"
+          echo "$files"
+
+          all_md=true
+          while IFS= read -r f; do
+            [ -z "$f" ] && continue
+            case "$f" in
+              AGENTS.md|LANES.md) all_md=false ;;
+              *.md) : ;;
+              *) all_md=false ;;
+            esac
+          done <<< "$files"
+
+          if [ "$all_md" = "true" ]; then
+            echo "tier=A" >> "$GITHUB_OUTPUT"
+          else
+            echo "tier=C" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Ensure tier labels exist
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+        run: |
+          gh label create "tier:auto" --repo "$REPO" --color "0E8A16" \
+            --description "Docs-only (not AGENTS.md/LANES.md), auto-merges on green CI" --force
+          gh label create "tier:manual-review" --repo "$REPO" --color "B60205" \
+            --description "Converge payload or governance contract, operator review required" --force
+
+      - name: Apply tier label
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          REPO: ${{ github.repository }}
+          TIER: ${{ steps.tier.outputs.tier }}
+        run: |
+          gh pr edit "$PR_NUMBER" --repo "$REPO" \
+            --remove-label "tier:auto" --remove-label "tier:manual-review" \
+            2>/dev/null || true
+          case "$TIER" in
+            A) gh pr edit "$PR_NUMBER" --repo "$REPO" --add-label "tier:auto" ;;
+            C) gh pr edit "$PR_NUMBER" --repo "$REPO" --add-label "tier:manual-review" ;;
+          esac
+
+      - name: Enable auto-merge for Tier A
+        if: steps.tier.outputs.tier == 'A'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          REPO: ${{ github.repository }}
+        run: |
+          gh pr merge "$PR_NUMBER" --repo "$REPO" --auto --squash

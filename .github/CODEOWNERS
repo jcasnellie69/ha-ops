@@ -1,0 +1,21 @@
+# D082626 | HA-0009 | p.p. claude-sonnet-5 for JC | ha-ops repo
+#
+# Review-gate policy. AGENTS.md §5 already declares "Review: human
+# operator. Blocking." for the whole Draft->Validate->Review->Converge
+# pipeline -- this file enforces that as a hard GitHub-side gate rather
+# than relying on convention alone. It does not loosen that rule: every
+# payload path (config/, dashboards/, analytics/, ansible/, scripts/)
+# requires @jcasnellie69's review. Only non-governance documentation is
+# exempt, matching the narrower Tier A used in the infra repo.
+#
+# AGENTS.md itself: "No agent modifies this contract; amendments are
+# operator-only." AGENTS.md and LANES.md are explicitly write:
+# human-operator-only per LANES.md section 3 -- listed here for the same
+# reason, as a hard gate, not just a convention.
+
+* @jcasnellie69
+
+# Tier A carve-out: plain documentation, not part of the Converge payload
+# or the governance contract itself. No owner = no required review.
+/README.md
+/docs/converge-log.md
