@@ -3,7 +3,7 @@
 # D082326T2102 | HA-0001 | scaffold landed to SCM; LANES.md installed to infra repo | JC | ha-ops + infra repos
 D082326T2102 HA-0001..HA-0008 — ha-ops scaffold v4 extracted to ~/ha-ops, validated (./validate.sh exit 0), git init on main, committed 02257b6, pushed to private jcasnellie69/ha-ops; LANES.md (HA-0005) installed verbatim at infra repo root, commit 6950615 pushed to jcasnellie69/homelab-config main. All eight registry rows HA-0001..HA-0008 remain OPEN pending their streams (AGENTS.md §8: rows close only on SCM-visible evidence referencing the ID). Status of every capability: Specified, not Operational (LANES §5d). No converge has been executed from either repo.
 
-# D082626T0000 | HA-0009 | p.p. claude-sonnet-5 for JC | ha-ops + infra repos
+# D082626T0000 | HA-0009 | PR risk tiering + CI turnover entry | p.p. claude-sonnet-5 for JC | ha-ops + infra repos
 D082626T0000 HA-0009 — Operator asked for PR review to stop bottlenecking on
 the operator personally; built PR risk-tiering + CI in both repos, this being
 the ha-ops half. Status: Specified, not Operational (no converge executed;

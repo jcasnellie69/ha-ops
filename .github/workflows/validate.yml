@@ -1,4 +1,4 @@
-# D082626 | HA-0009 | p.p. claude-sonnet-5 for JC | ha-ops repo
+# D082626T0000 | HA-0009 | wire validate.sh into GitHub Actions | p.p. claude-sonnet-5 for JC | ha-ops repo
 #
 # Wires the existing ./validate.sh (yamllint + ansible-lint, per AGENTS.md
 # §5 Pipeline "Validate" stage) into GitHub Actions as an actual required

@@ -1,4 +1,4 @@
-# D082626 | HA-0009 | p.p. claude-sonnet-5 for JC | ha-ops repo
+# D082626T0000 | HA-0009 | PR risk tiering, two tiers not three | p.p. claude-sonnet-5 for JC | ha-ops repo
 #
 # Two tiers only, unlike the infra repo's three -- AGENTS.md sec5 already
 # mandates blocking human review for the whole Converge payload pipeline,
