@@ -3,6 +3,47 @@
 # D082326T2102 | HA-0001 | scaffold landed to SCM; LANES.md installed to infra repo | JC | ha-ops + infra repos
 D082326T2102 HA-0001..HA-0008 — ha-ops scaffold v4 extracted to ~/ha-ops, validated (./validate.sh exit 0), git init on main, committed 02257b6, pushed to private jcasnellie69/ha-ops; LANES.md (HA-0005) installed verbatim at infra repo root, commit 6950615 pushed to jcasnellie69/homelab-config main. All eight registry rows HA-0001..HA-0008 remain OPEN pending their streams (AGENTS.md §8: rows close only on SCM-visible evidence referencing the ID). Status of every capability: Specified, not Operational (LANES §5d). No converge has been executed from either repo.
 
+# D082626T0000 | HA-0009 | PR risk tiering + CI turnover entry | p.p. claude-sonnet-5 for JC | ha-ops + infra repos
+D082626T0000 HA-0009 — Operator asked for PR review to stop bottlenecking on
+the operator personally; built PR risk-tiering + CI in both repos, this being
+the ha-ops half. Status: Specified, not Operational (no converge executed;
+branch protection not yet applied — see below).
+
+Landed on `chore/pr-risk-tiering-and-ci`, commit 2d889db, pushed, PR #1 open
+(not merged):
+- `.github/workflows/validate.yml` — wires the existing `./validate.sh` into
+  GitHub Actions as a real status check. It was named in AGENTS.md §5 as the
+  blocking Validate stage but never actually ran anywhere before this.
+- `.github/CODEOWNERS` + `.github/workflows/pr-risk-tier.yml` — two tiers,
+  not the infra repo's three. AGENTS.md §5 already mandates "Review: human
+  operator. Blocking." for the whole Draft->Validate->Review->Converge
+  pipeline, so this does NOT introduce a fast-track auto-merge exception for
+  config/dashboards/analytics/ansible/scripts without an operator-approved
+  amendment to that contract. Tier A (auto-merge) is plain documentation
+  only, explicitly excluding AGENTS.md/LANES.md themselves. Everything else
+  defaults to Tier C, hard-blocked from merging without operator review —
+  once branch protection is actually applied (see below).
+
+Repo-level `allow_auto_merge` enabled directly (not version-controlled).
+
+Flagged for operator disposition (no agent action taken):
+- Branch protection (required `validate` status check + "Require review
+  from Code Owners") has NOT been applied to `main`. Without it, CODEOWNERS
+  has no enforcement teeth — an agent or anyone could still merge a Tier C
+  PR by hand. This is a hard GitHub-side setting, not a file, and the same
+  class of action was blocked by the session's own auto-mode classifier as
+  high-blast-radius when attempted in the infra repo. Needs explicit
+  operator action or explicit operator instruction to the agent.
+- The AGENTS.md §8 Change registry table does not yet have an HA-0009 row.
+  AGENTS.md is operator-write-only per its own §6 ("No agent modifies this
+  contract; amendments are operator-only") — not added here for that
+  reason. This converge-log entry is the SCM-visible record until that row
+  exists.
+- Companion PR in the infra repo (jcasnellie69/homelab-config): same
+  pattern, three tiers (that repo has no equivalent blocking-review
+  contract, so a Tier B fast-track was defined there), PR chore/pr-risk-tiering
+  branch, also awaiting branch protection.
+
 Flagged for operator disposition (no agent action taken):
 - §6a ORPHANS: infra checkout /mnt/repos/homelab-config sits on feat/opnsense-staged-deployment (NOT main) with 18 dirty/untracked entries — OPNsense gate2 playbooks, docker-vm-health-check, 7 session logs, artifacts/decommissioned-checkouts/. Verified untouched (18 before, 18 after). Expected NET-RENUM-0001 WIP was NOT found: no such change-ID in any ref, working tree, or share.
 - §3/§4 MISSING: infra repo has no converge log and no services-register.md, both presumed by LANES entry protocol. Recovery search per §6b (all refs, .recycle, fileserver share) found no copy. Not created — INFRA-lane artifacts requiring operator direction. This entry is therefore recorded in the ha-ops log per LANES §2 cross-lane escalation, not in the infra log the operator specified.
