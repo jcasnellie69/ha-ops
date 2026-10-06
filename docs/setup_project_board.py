@@ -311,7 +311,7 @@ def create_text_field(client: GraphQLClient, project_id: str,
         dataType: TEXT,
         name: $name
       }) {
-        projectV2Field { id name }
+        projectV2Field { ... on ProjectV2Field { id name } }
       }
     }"""
     r = client.query(mutation, {"projectId": project_id, "name": name})
