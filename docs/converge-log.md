@@ -65,3 +65,6 @@ NEW — flagged for operator disposition:
 - Runbook artifacts/hc/2026-05-28-opnsense-readiness.md still names the wrong NFS server (192.168.4.10; actual export host is 192.168.4.60). Not corrected here — separate change, INFRA lane.
 
 Next action in-session: reboot CT 409 so its mp0/mp1 binds pick up the now-populated NFS sources. Operator-directed. This terminates the working session; any verification after the reboot belongs to the next session.
+
+# D100626T2223 | HA-0001 | correct HFS-to-zFS migration action | JC | ha-ops repo
+Updated the HFS migration action in `docs/spec.json` and `docs/14.html` to use BPXWH2Z on the source release. No deployment performed. Validation and human review remain in-flight; next gate is `./validate.sh` and operator review.

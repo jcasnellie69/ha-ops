@@ -1,4 +1,5 @@
 {
+  "_change_header": "# D100626T2223 | HA-0001 | correct HFS-to-zFS migration action | JC | ha-ops repo",
   "workbooks": [
     {
       "file_name": "zos-migration-risk-comparison.xlsx",
@@ -67,7 +68,7 @@
             {"ref": "A9:I9", "data": ["Machine Learning for z/OS 3.1 Core Edition (HAQN310)", "Dec 2025", "REMOVED", "High", "No", "Superseded by MLz Core 3.2", "Install MLz Core 3.2 (FMID HAQN320)", "1-2 weeks", "☐"]},
             {"ref": "A10:I10", "data": ["DCOLLECT DVLCSMSS field", "3.2", "REMOVED", "Medium", "No", "Field removed from DCOLLECT output structure", "Update programs parsing DCOLLECT output", "1-3 days", "☐"]},
             {"ref": "A11:I11", "data": ["RMF for z/OS 3.1 documentation", "3.2", "DEPRECATED", "Low", "No", "No longer published or maintained", "Use RMF for z/OS 3.2 documentation", "1 day", "☐"]},
-            {"ref": "A12:I12", "data": ["Hierarchical File System (HFS) data structure", "2.5", "REMOVED", "CRITICAL", "YES", "Cannot mount DSNTYPE=HFS; IPL failure", "Migrate all HFS to ZFS using zfsadm convert", "1-3 months", "☐"]},
+            {"ref": "A12:I12", "data": ["Hierarchical File System (HFS) data structure", "2.5", "REMOVED", "CRITICAL", "YES", "Cannot mount DSNTYPE=HFS; IPL failure", "Use BPXWH2Z on the source release to migrate HFS to zFS", "1-3 months", "☐"]},
             {"ref": "A13:I13", "data": ["JES3 - Job Entry Subsystem 3", "3.1", "REMOVED", "CRITICAL", "No", "JES3 removed; JES2 is sole JES in 3.2", "Migrate to JES2; use IBM migration guide", "6-18 months", "☐"]},
             {"ref": "A14:I14", "data": ["Bulk Data Transfer (BDT BDT F2F BDT SNA NJE)", "3.1", "REMOVED", "High", "No", "All BDT elements removed", "Use FTP Connect:Direct or MQ", "2-6 months", "☐"]},
             {"ref": "A15:I15", "data": ["Communications Server Security Level 3 (standalone)", "3.1", "REMOVED", "Medium", "No", "Function moved to z/OS Security Level 3", "Use z/OS Security Level 3 optional feature", "1-2 weeks", "☐"]},

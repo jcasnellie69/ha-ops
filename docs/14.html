@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- # D100626T2223 | HA-0001 | correct HFS-to-zFS migration action | JC | ha-ops repo -->
 
 <html lang="en">
 <head>
@@ -67,7 +68,7 @@
 <tr><td class="comp">C/C++</td><td>C/C++ Host Performance Analyzer (FMIDs H24P111, J24P112)</td><td class="c"><span class="imp-high">🟠 Loss</span></td><td class="c"><span class="s-rem">REMOVED</span></td><td>3.2</td><td>Product removed; no longer orderable or installable</td><td class="repl">→ Use IBM Developer for z/OS</td><td class="trk">☐</td></tr>
 <tr><td class="comp">AI/ML</td><td>AI System Services 1.1 (AISS 1.1) &amp; MLz Core 3.1 (HAQN310)</td><td class="c"><span class="imp-high">🟠 Loss</span></td><td class="c"><span class="s-rem">REMOVED</span></td><td>Dec 2025</td><td>AISS 1.1 and MLz Core 3.1 superseded and removed</td><td class="repl">→ Install AISS 1.2 and MLz Core 3.2 (HAQN320)</td><td class="trk">☐</td></tr>
 <tr class="sdiv2"><td colspan="8">⚠️ REMOVED IN PRIOR RELEASES — Verify Not Present When Migrating to 3.2</td></tr>
-<tr><td class="comp">HFS</td><td>Hierarchical File System (HFS) data structure</td><td class="c"><span class="imp-crit">🔴 IPL Risk</span></td><td class="c"><span class="s-rem">REMOVED</span></td><td>2.5</td><td>Cannot mount DSNTYPE=HFS; remaining HFS mounts fail at IPL</td><td class="repl">→ Migrate all HFS to ZFS using zfsadm convert</td><td class="trk">☐</td></tr>
+<tr><td class="comp">HFS</td><td>Hierarchical File System (HFS) data structure</td><td class="c"><span class="imp-crit">🔴 IPL Risk</span></td><td class="c"><span class="s-rem">REMOVED</span></td><td>2.5</td><td>Cannot mount DSNTYPE=HFS; remaining HFS mounts fail at IPL</td><td class="repl">→ Use BPXWH2Z on the source release to migrate HFS to zFS</td><td class="trk">☐</td></tr>
 <tr><td class="comp">JES3</td><td>JES3 — Job Entry Subsystem 3</td><td class="c"><span class="imp-crit">🔴 IPL Risk</span></td><td class="c"><span class="s-rem">REMOVED</span></td><td>3.1</td><td>JES3 removed; JES2 is sole JES in 3.2</td><td class="repl">→ Migrate to JES2; use IBM migration guide</td><td class="trk">☐</td></tr>
 <tr><td class="comp">BDT</td><td>Bulk Data Transfer (BDT, BDT File-to-File, BDT SNA NJE)</td><td class="c"><span class="imp-high">🟠 Loss</span></td><td class="c"><span class="s-rem">REMOVED</span></td><td>3.1</td><td>All BDT elements removed; not available in 3.2</td><td class="repl">→ Use FTP, Connect:Direct, or MQ</td><td class="trk">☐</td></tr>
 <tr><td class="comp">Comm Svr</td><td>Communications Server Security Level 3 (standalone)</td><td class="c"><span class="imp-med">🟡 Action</span></td><td class="c"><span class="s-rem">REMOVED</span></td><td>3.1</td><td>Unpriced feature removed; function moved</td><td class="repl">→ Use z/OS Security Level 3 optional feature</td><td class="trk">☐</td></tr>
