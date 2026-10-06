@@ -760,9 +760,13 @@ Examples:
 | Change Manager | | | |
 """
     log_path = Path("docs/migration-log.md")
-    with open(log_path, "w") as f:
-        f.write(migration_log)
-    print(f"  ✅ Migration log template written to: {log_path}")
+    try:
+        with open(log_path, "x") as f:
+            f.write(migration_log)
+    except FileExistsError:
+        print(f"  ℹ️  Existing migration log preserved: {log_path}")
+    else:
+        print(f"  ✅ Migration log template written to: {log_path}")
 
     # ── Step 9: Save config ────────────────────────────────────────────────────
     config = {
