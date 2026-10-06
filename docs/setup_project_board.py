@@ -782,8 +782,9 @@ Examples:
         "sprints":       [{"number": s["number"], "name": s["name"],
                            "theme": s["theme"]} for s in SPRINTS],
     }
-    with open(args.output, "w") as f:
-        json.dump(config, f, indent=2)
+    if not args.dry_run:
+        with open(args.output, "w") as f:
+            json.dump(config, f, indent=2)
 
     print(f"""
 ╔══════════════════════════════════════════════════════════════╗
@@ -793,7 +794,7 @@ Examples:
   Sprint Start: {start_date}
   Fields:       {len([v for v in field_ids.values() if v])} created
   Views:        {len([v for v in view_ids.values() if v])} created
-  Config saved: {args.output}
+  Config saved: {'Not written (dry run)' if args.dry_run else args.output}
 
   📄 Docs generated:
      docs/sprint-plan.md
