@@ -65,3 +65,11 @@ NEW — flagged for operator disposition:
 - Runbook artifacts/hc/2026-05-28-opnsense-readiness.md still names the wrong NFS server (192.168.4.10; actual export host is 192.168.4.60). Not corrected here — separate change, INFRA lane.
 
 Next action in-session: reboot CT 409 so its mp0/mp1 binds pick up the now-populated NFS sources. Operator-directed. This terminates the working session; any verification after the reboot belongs to the next session.
+
+# D100626T2302 | HA-0010 | IPL validation evidence and blocker closure traceability requirements | p.p. Copilot for JC | ha-ops repo
+HA-0010 | ORCH | IPL validation evidence and blocker closure traceability requirements | OPEN
+Assigned to establish per-blocker validation evidence, verified-only closure,
+and explicit operator approval requirements for the migration automation policy.
+The AGENTS.md registry table remains operator-write-only under §6; this
+SCM-visible ORCH entry follows the HA-0009 precedent until the operator updates
+that table. Requirements are in docs/ipl-validation-traceability.md.
