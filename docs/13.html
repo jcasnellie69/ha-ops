@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>z/OS 3.2 Function Matrix — Part 2: Data, Storage &amp; Monitoring</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
+<link href="/fonts/Arvo/index.css" rel="stylesheet"/>
+<link href="/fonts/Inter/index.css" rel="stylesheet"/>
+<style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root { --color-primary: #1976D2; --color-secondary: #0D47A1; }
+    body { font-family: 'Inter', sans-serif; color: #333; background: linear-gradient(180deg, #FFFFFF 0%, #E3F2FD 100%); overflow: hidden; }
+    .slide-container { display: flex; flex-direction: column; height: 100vh; width: 100%; background: linear-gradient(180deg, #FFFFFF 0%, #E3F2FD 100%); }
+    .slide-header { text-align: center; padding: 1rem 2rem 0.3rem; }
+    .slide-title { font-family: 'Arvo', serif; font-size: 1.7rem; font-weight: 700; color: var(--color-primary); }
+    .slide-subtitle { font-size: 0.72rem; color: #666; margin-top: 0.15rem; }
+    .slide-content { flex: 1; display: flex; flex-direction: column; padding: 0.3rem 1.2rem 0.4rem; overflow: hidden; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.68rem; table-layout: fixed; }
+    thead tr { background: var(--color-primary); color: #fff; }
+    thead th { padding: 0.3rem 0.4rem; text-align: left; font-family: 'Arvo', serif; font-weight: 700; font-size: 0.67rem; overflow: hidden; }
+    thead th.c { text-align: center; }
+    tbody tr:nth-child(even) { background: #F0F7FF; }
+    tbody tr:nth-child(odd) { background: #FAFCFF; }
+    tbody td { padding: 0.22rem 0.4rem; border-bottom: 1px solid #DDEEFF; vertical-align: middle; line-height: 1.2; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+    .comp { font-family: 'Arvo', serif; font-weight: 700; color: var(--color-secondary); font-size: 0.65rem; }
+    .c { text-align: center; }
+    .p1 { background: #C62828; color: #fff; padding: 0.08rem 0.28rem; border-radius: 0.2rem; font-size: 0.6rem; font-weight: 700; }
+    .p2 { background: #E65100; color: #fff; padding: 0.08rem 0.28rem; border-radius: 0.2rem; font-size: 0.6rem; font-weight: 700; }
+    .p3 { background: #2E7D32; color: #fff; padding: 0.08rem 0.28rem; border-radius: 0.2rem; font-size: 0.6rem; font-weight: 700; }
+    .s-new { background: #E8F5E9; color: #1B5E20; padding: 0.08rem 0.25rem; border-radius: 0.18rem; font-size: 0.6rem; font-weight: 700; }
+    .s-chg { background: #FFF3E0; color: #BF360C; padding: 0.08rem 0.25rem; border-radius: 0.18rem; font-size: 0.6rem; font-weight: 700; }
+    .s-enh { background: #E3F2FD; color: #0D47A1; padding: 0.08rem 0.25rem; border-radius: 0.18rem; font-size: 0.6rem; font-weight: 700; }
+    .f-data { color: #4E342E; font-weight: 600; font-size: 0.63rem; }
+    .f-mon  { color: #1565C0; font-weight: 600; font-size: 0.63rem; }
+    .f-ops  { color: #00695C; font-weight: 600; font-size: 0.63rem; }
+    .f-ai   { color: #6A1B9A; font-weight: 600; font-size: 0.63rem; }
+    .trk { text-align: center; color: #aaa; font-size: 0.72rem; }
+    .legend { display: flex; gap: 0.8rem; justify-content: center; padding: 0.25rem 0 0; font-size: 0.62rem; flex-wrap: wrap; }
+    .leg { display: flex; align-items: center; gap: 0.2rem; }
+    .sdiv td { background: #1565C0; color: #fff; font-family: 'Arvo', serif; font-weight: 700; font-size: 0.63rem; padding: 0.18rem 0.4rem; letter-spacing: 0.04em; white-space: nowrap; }
+    .sdiv2 td { background: #00695C; color: #fff; font-family: 'Arvo', serif; font-weight: 700; font-size: 0.63rem; padding: 0.18rem 0.4rem; letter-spacing: 0.04em; white-space: nowrap; }
+    .sdiv3 td { background: #4E342E; color: #fff; font-family: 'Arvo', serif; font-weight: 700; font-size: 0.63rem; padding: 0.18rem 0.4rem; letter-spacing: 0.04em; white-space: nowrap; }
+</style>
+</head>
+<body>
+<div class="slide-container">
+<div class="slide-header">
+<h1 class="slide-title">z/OS 3.2 Function Matrix — Part 2: Data, Storage &amp; Monitoring</h1>
+<div class="slide-subtitle">Priority: 🔴 Critical  |  🟠 Important  |  🟢 Beneficial  ·  Status: NEW · CHG · ENH  ·  ☐ = Track</div>
+</div>
+<div class="slide-content">
+<table>
+<colgroup>
+<col style="width:9%"/><col style="width:26%"/><col style="width:9%"/><col style="width:7%"/>
+<col style="width:7%"/><col style="width:7%"/><col style="width:28%"/><col style="width:7%"/>
+</colgroup>
+<thead>
+<tr>
+<th>Component</th><th>Function / Feature</th><th class="c">Priority</th>
+<th class="c">Status</th><th>Focus</th><th>When</th><th>Key Detail</th><th class="c">Track</th>
+</tr>
+</thead>
+<tbody>
+<tr class="sdiv"><td colspan="8">OMVS / z/OS UNIX System Services</td></tr>
+<tr><td class="comp">OMVS</td><td>PROC file system</td><td class="c"><span class="p3">🟢 Ben</span></td><td class="c"><span class="s-new">NEW</span></td><td class="f-ops">Ops</td><td>Sep 2025</td><td>New pseudo-FS providing process info via /proc</td><td class="trk">☐</td></tr>
+<tr><td class="comp">OMVS</td><td>shlock and flock — shell script locking</td><td class="c"><span class="p2">🟠 Imp</span></td><td class="c"><span class="s-new">NEW</span></td><td class="f-ops">Ops</td><td>Sep 2025</td><td>Locking mechanisms for z/OS UNIX shell scripts</td><td class="trk">☐</td></tr>
+<tr><td class="comp">OMVS</td><td>Validating z/OS UNIX system configuration</td><td class="c"><span class="p2">🟠 Imp</span></td><td class="c"><span class="s-new">NEW</span></td><td class="f-ops">Ops</td><td>Sep 2025</td><td>New tooling to validate UNIX system configuration</td><td class="trk">☐</td></tr>
+<tr><td class="comp">OMVS</td><td>Managing namespaces; display FS IDs; per-client NFS unmount</td><td class="c"><span class="p3">🟢 Ben</span></td><td class="c"><span class="s-new">NEW</span></td><td class="f-ops">Ops</td><td>Sep 2025</td><td>Namespace mgmt; mount point visibility; granular NFS unmount</td><td class="trk">☐</td></tr>
+<tr><td class="comp">OMVS</td><td>zFS shrink enhancements; BUFSIZE max 2047 MB</td><td class="c"><span class="p2">🟠 Imp</span></td><td class="c"><span class="s-enh">ENH</span></td><td class="f-ai">AI</td><td>Sep 2025</td><td>Improved zFS shrink; UNIX buffer ceiling raised for AI model data</td><td class="trk">☐</td></tr>
+<tr class="sdiv2"><td colspan="8">DFSMS — OAM / IDCAMS / HSM   |   CDP — Common Data Provider</td></tr>
+<tr><td class="comp">OAM</td><td>OAM REST API — START / STOP / DISPLAY / MODIFY</td><td class="c"><span class="p2">🟠 Imp</span></td><td class="c"><span class="s-new">NEW</span></td><td class="f-data">Data</td><td>Jan 2026</td><td>REST API for Object Access Method; new MVS commands</td><td class="trk">☐</td></tr>
+<tr><td class="comp">OAM</td><td>ASCBV31 / REUSASID support in OAM components</td><td class="c"><span class="p2">🟠 Imp</span></td><td class="c"><span class="s-enh">ENH</span></td><td class="f-data">Data</td><td>Feb 2026</td><td>OAM updated for new BCP parameters</td><td class="trk">☐</td></tr>
+<tr><td class="comp">IDCAMS</td><td>DCOLLECT new field 322; REPRO CIMODE; EXTENT POOL V3</td><td class="c"><span class="p3">🟢 Ben</span></td><td class="c"><span class="s-new">NEW</span></td><td class="f-data">Data</td><td>Sep–Jan 2026</td><td>New DCOLLECT offset; REPRO CI mode; extent pool detailed output</td><td class="trk">☐</td></tr>
+<tr><td class="comp">CDP</td><td>OpenTelemetry Emitter integration (SMF 1157–1161)</td><td class="c"><span class="p1">🔴 Critical</span></td><td class="c"><span class="s-new">NEW</span></td><td class="f-mon">Monitor</td><td>Sep 2025</td><td>CDP feeds new SMF types for OTel telemetry pipeline (OA66345)</td><td class="trk">☐</td></tr>
+<tr><td class="comp">CDP</td><td>SMF Type 70 subtype 3 — CPU diagnostics data</td><td class="c"><span class="p2">🟠 Imp</span></td><td class="c"><span class="s-new">NEW</span></td><td class="f-mon">Monitor</td><td>Mar 2026</td><td>New subtype for CPU diagnostics measurement (OA68545)</td><td class="trk">☐</td></tr>
+<tr class="sdiv3"><td colspan="8">RMF — Resource Measurement Facility   |   SMF Records</td></tr>
+<tr><td class="comp">RMF</td><td>OpenMetrics endpoint — Prometheus / Grafana integration</td><td class="c"><span class="p1">🔴 Critical</span></td><td class="c"><span class="s-new">NEW</span></td><td class="f-mon">Monitor</td><td>Sep 2025</td><td>Monitor III metrics in OpenMetrics; integrates Prometheus, Telegraf, Grafana</td><td class="trk">☐</td></tr>
+<tr><td class="comp">RMF</td><td>JSON format for DDS responses</td><td class="c"><span class="p2">🟠 Imp</span></td><td class="c"><span class="s-new">NEW</span></td><td class="f-mon">Monitor</td><td>Sep 2025</td><td>DDS returns JSON in addition to XML for flexible data extraction</td><td class="trk">☐</td></tr>
+<tr><td class="comp">RMF</td><td>NETH (Network Express Hybrid) PCIE Activity Report</td><td class="c"><span class="p2">🟠 Imp</span></td><td class="c"><span class="s-new">NEW</span></td><td class="f-mon">Monitor</td><td>Dec 2025</td><td>New PCIE device type; NETH activity panel (OA68173)</td><td class="trk">☐</td></tr>
+<tr><td class="comp">RMF</td><td>Service Class Period in DELAY/PROC/STOR/STORC reports</td><td class="c"><span class="p2">🟠 Imp</span></td><td class="c"><span class="s-enh">ENH</span></td><td class="f-mon">Monitor</td><td>Apr 2026</td><td>Service Class Period added to four key reports (OA69228)</td><td class="trk">☐</td></tr>
+<tr><td class="comp">RMF</td><td>Hardware Group Cap utilization in CPC Capacity Report</td><td class="c"><span class="p2">🟠 Imp</span></td><td class="c"><span class="s-enh">ENH</span></td><td class="f-mon">Monitor</td><td>Apr 2026</td><td>CPC report shows Hardware Group Cap utilization (OA69228)</td><td class="trk">☐</td></tr>
+<tr><td class="comp">SMF</td><td>Type 30 Storage/Paging; Types 1157–1161 OTel; Type 88 Logger</td><td class="c"><span class="p2">🟠 Imp</span></td><td class="c"><span class="s-enh">ENH</span></td><td class="f-mon">Monitor</td><td>Sep 2025</td><td>New fields in Type 30; OTel record types; Logger SMF88LTDE/ATKE</td><td class="trk">☐</td></tr>
+<tr><td class="comp">SMF</td><td>Type 119 AI batching flag; Type 72/74 new fields</td><td class="c"><span class="p2">🟠 Imp</span></td><td class="c"><span class="s-enh">ENH</span></td><td class="f-mon">Monitor</td><td>Sep 2025</td><td>AI batching training flag; IPv6 R1 compliance; I/O link stats</td><td class="trk">☐</td></tr>
+<tr class="sdiv"><td colspan="8">SMP/E  ·  JES2  ·  Language Environment</td></tr>
+<tr><td class="comp">SMP/E</td><td>z/OS 3.2 product packaging support; message changes</td><td class="c"><span class="p1">🔴 Critical</span></td><td class="c"><span class="s-enh">ENH</span></td><td class="f-ops">Ops</td><td>Sep 2025</td><td>SMP/E updated for new 3.2 FMIDs and product packaging</td><td class="trk">☐</td></tr>
+<tr><td class="comp">JES2</td><td>Extended policy functions</td><td class="c"><span class="p2">🟠 Imp</span></td><td class="c"><span class="s-new">NEW</span></td><td class="f-ops">Ops</td><td>Sep 2025</td><td>New policy types and conditions for job processing control</td><td class="trk">☐</td></tr>
+<tr><td class="comp">Lang Env</td><td>IBM Semeru 25 support; CEEPRMxx release updates</td><td class="c"><span class="p2">🟠 Imp</span></td><td class="c"><span class="s-new">NEW</span></td><td class="f-ops">Ops</td><td>Apr 2026</td><td>Semeru Runtime v25 supported; LE runtime options changed — retest apps</td><td class="trk">☐</td></tr>
+</tbody>
+</table>
+<div class="legend">
+<div class="leg"><span class="s-new">NEW</span> New function</div>
+<div class="leg"><span class="s-chg">CHG</span> Changed default</div>
+<div class="leg"><span class="s-enh">ENH</span> Enhancement</div>
+<div class="leg"><span class="f-data">■</span> Data/Storage</div>
+<div class="leg"><span class="f-mon">■</span> Monitoring</div>
+<div class="leg"><span class="f-ops">■</span> Operations</div>
+<div class="leg"><span class="f-ai">■</span> AI</div>
+</div>
+</div>
+</div>
+</body>
+</html>

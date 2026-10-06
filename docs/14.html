@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>z/OS 3.2 Function Matrix — Part 3: Deprecated &amp; Removed</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
+<link href="/fonts/Arvo/index.css" rel="stylesheet"/>
+<link href="/fonts/Inter/index.css" rel="stylesheet"/>
+<style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root { --color-primary: #B71C1C; --color-secondary: #7B1FA2; }
+    body { font-family: 'Inter', sans-serif; color: #333; background: linear-gradient(180deg, #FFFFFF 0%, #E3F2FD 100%); overflow: hidden; }
+    .slide-container { display: flex; flex-direction: column; height: 100vh; width: 100%; background: linear-gradient(180deg, #FFFFFF 0%, #E3F2FD 100%); }
+    .slide-header { text-align: center; padding: 1rem 2rem 0.3rem; }
+    .slide-title { font-family: 'Arvo', serif; font-size: 1.7rem; font-weight: 700; color: var(--color-primary); }
+    .slide-subtitle { font-size: 0.72rem; color: #666; margin-top: 0.15rem; }
+    .slide-content { flex: 1; display: flex; flex-direction: column; padding: 0.3rem 1.2rem 0.3rem; overflow: hidden; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.68rem; table-layout: fixed; }
+    thead tr { background: #B71C1C; color: #fff; }
+    thead th { padding: 0.3rem 0.4rem; text-align: left; font-family: 'Arvo', serif; font-weight: 700; font-size: 0.67rem; overflow: hidden; }
+    thead th.c { text-align: center; }
+    tbody tr:nth-child(even) { background: #FFF5F5; }
+    tbody tr:nth-child(odd) { background: #FFFAFA; }
+    tbody td { padding: 0.22rem 0.4rem; border-bottom: 1px solid #FFCDD2; vertical-align: middle; line-height: 1.2; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+    .comp { font-family: 'Arvo', serif; font-weight: 700; color: #B71C1C; font-size: 0.65rem; }
+    .c { text-align: center; }
+    .imp-crit { background: #B71C1C; color: #fff; padding: 0.08rem 0.28rem; border-radius: 0.2rem; font-size: 0.6rem; font-weight: 700; }
+    .imp-high { background: #E65100; color: #fff; padding: 0.08rem 0.28rem; border-radius: 0.2rem; font-size: 0.6rem; font-weight: 700; }
+    .imp-med  { background: #F57F17; color: #fff; padding: 0.08rem 0.28rem; border-radius: 0.2rem; font-size: 0.6rem; font-weight: 700; }
+    .s-rem  { background: #FFCDD2; color: #B71C1C; padding: 0.08rem 0.25rem; border-radius: 0.18rem; font-size: 0.6rem; font-weight: 700; }
+    .s-dep  { background: #FFE0B2; color: #BF360C; padding: 0.08rem 0.25rem; border-radius: 0.18rem; font-size: 0.6rem; font-weight: 700; }
+    .s-chg  { background: #E3F2FD; color: #0D47A1; padding: 0.08rem 0.25rem; border-radius: 0.18rem; font-size: 0.6rem; font-weight: 700; }
+    .repl { font-size: 0.63rem; color: #2E7D32; font-style: italic; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+    .trk { text-align: center; color: #aaa; font-size: 0.72rem; }
+    .sdiv1 td { background: #B71C1C; color: #fff; font-family: 'Arvo', serif; font-weight: 700; font-size: 0.63rem; padding: 0.18rem 0.4rem; letter-spacing: 0.04em; white-space: nowrap; }
+    .sdiv2 td { background: #E65100; color: #fff; font-family: 'Arvo', serif; font-weight: 700; font-size: 0.63rem; padding: 0.18rem 0.4rem; letter-spacing: 0.04em; white-space: nowrap; }
+    .sdiv3 td { background: #F57F17; color: #fff; font-family: 'Arvo', serif; font-weight: 700; font-size: 0.63rem; padding: 0.18rem 0.4rem; letter-spacing: 0.04em; white-space: nowrap; }
+    .warning-box { background: #FFF3E0; border: 1px solid #FFB74D; border-radius: 0.35rem; padding: 0.25rem 0.8rem; font-size: 0.67rem; color: #BF360C; text-align: center; margin-top: 0.3rem; }
+    .legend { display: flex; gap: 0.8rem; justify-content: center; padding: 0.2rem 0 0; font-size: 0.62rem; flex-wrap: wrap; }
+    .leg { display: flex; align-items: center; gap: 0.2rem; }
+</style>
+</head>
+<body>
+<div class="slide-container">
+<div class="slide-header">
+<h1 class="slide-title">z/OS 3.2 Function Matrix — Part 3: Deprecated &amp; Removed Functions</h1>
+<div class="slide-subtitle">Impact: 🔴 IPL Failure Risk  |  🟠 Functional Loss  |  🟡 Action Required  ·  Status: REMOVED · DEPRECATED · CHANGED  ·  ☐ = Track</div>
+</div>
+<div class="slide-content">
+<table>
+<colgroup>
+<col style="width:9%"/><col style="width:22%"/><col style="width:9%"/><col style="width:8%"/>
+<col style="width:6%"/><col style="width:22%"/><col style="width:19%"/><col style="width:5%"/>
+</colgroup>
+<thead>
+<tr>
+<th>Component</th><th>Function / Feature</th><th class="c">Impact</th>
+<th class="c">Status</th><th>Since</th><th>Risk / Detail</th><th>Replacement / Action</th><th class="c">Track</th>
+</tr>
+</thead>
+<tbody>
+<tr class="sdiv1"><td colspan="8">⛔ REMOVED IN z/OS 3.2 — Immediate Action Required Before IPL</td></tr>
+<tr><td class="comp">BPXPRMxx</td><td>HFS params: BUFFERMONITOR, FIXED, RNODEWAIT, SYNCDEFAULT, WAITABEND, VIRTUAL</td><td class="c"><span class="imp-crit">🔴 IPL Risk</span></td><td class="c"><span class="s-rem">REMOVED</span></td><td>3.2</td><td>Parameters deleted; presence causes IPL failure</td><td class="repl">→ Remove all HFS params; ZFS mandatory</td><td class="trk">☐</td></tr>
+<tr><td class="comp">IEASYSxx</td><td>VRREGN= and VREALSZ= parameters</td><td class="c"><span class="imp-crit">🔴 IPL Risk</span></td><td class="c"><span class="s-rem">REMOVED</span></td><td>3.2</td><td>Causes IPL failure if present in 3.2 IEASYSxx</td><td class="repl">→ Replace with REAL=nnnM or REAL=nnnG</td><td class="trk">☐</td></tr>
+<tr><td class="comp">C/C++</td><td>C/C++ Host Performance Analyzer (FMIDs H24P111, J24P112)</td><td class="c"><span class="imp-high">🟠 Loss</span></td><td class="c"><span class="s-rem">REMOVED</span></td><td>3.2</td><td>Product removed; no longer orderable or installable</td><td class="repl">→ Use IBM Developer for z/OS</td><td class="trk">☐</td></tr>
+<tr><td class="comp">AI/ML</td><td>AI System Services 1.1 (AISS 1.1) &amp; MLz Core 3.1 (HAQN310)</td><td class="c"><span class="imp-high">🟠 Loss</span></td><td class="c"><span class="s-rem">REMOVED</span></td><td>Dec 2025</td><td>AISS 1.1 and MLz Core 3.1 superseded and removed</td><td class="repl">→ Install AISS 1.2 and MLz Core 3.2 (HAQN320)</td><td class="trk">☐</td></tr>
+<tr class="sdiv2"><td colspan="8">⚠️ REMOVED IN PRIOR RELEASES — Verify Not Present When Migrating to 3.2</td></tr>
+<tr><td class="comp">HFS</td><td>Hierarchical File System (HFS) data structure</td><td class="c"><span class="imp-crit">🔴 IPL Risk</span></td><td class="c"><span class="s-rem">REMOVED</span></td><td>2.5</td><td>Cannot mount DSNTYPE=HFS; remaining HFS mounts fail at IPL</td><td class="repl">→ Migrate all HFS to ZFS using zfsadm convert</td><td class="trk">☐</td></tr>
+<tr><td class="comp">JES3</td><td>JES3 — Job Entry Subsystem 3</td><td class="c"><span class="imp-crit">🔴 IPL Risk</span></td><td class="c"><span class="s-rem">REMOVED</span></td><td>3.1</td><td>JES3 removed; JES2 is sole JES in 3.2</td><td class="repl">→ Migrate to JES2; use IBM migration guide</td><td class="trk">☐</td></tr>
+<tr><td class="comp">BDT</td><td>Bulk Data Transfer (BDT, BDT File-to-File, BDT SNA NJE)</td><td class="c"><span class="imp-high">🟠 Loss</span></td><td class="c"><span class="s-rem">REMOVED</span></td><td>3.1</td><td>All BDT elements removed; not available in 3.2</td><td class="repl">→ Use FTP, Connect:Direct, or MQ</td><td class="trk">☐</td></tr>
+<tr><td class="comp">Comm Svr</td><td>Communications Server Security Level 3 (standalone)</td><td class="c"><span class="imp-med">🟡 Action</span></td><td class="c"><span class="s-rem">REMOVED</span></td><td>3.1</td><td>Unpriced feature removed; function moved</td><td class="repl">→ Use z/OS Security Level 3 optional feature</td><td class="trk">☐</td></tr>
+<tr><td class="comp">IBM KC</td><td>IBM Knowledge Center for z/OS</td><td class="c"><span class="imp-med">🟡 Action</span></td><td class="c"><span class="s-rem">REMOVED</span></td><td>3.1</td><td>Base element removed; documentation moved online</td><td class="repl">→ Use ibm.com/docs/en/zos</td><td class="trk">☐</td></tr>
+<tr><td class="comp">Alternate Base</td><td>Alternate Base priced feature</td><td class="c"><span class="imp-med">🟡 Action</span></td><td class="c"><span class="s-rem">REMOVED</span></td><td>3.1</td><td>Priced feature removed; not available in 3.2</td><td class="repl">→ Review licensing; contact IBM</td><td class="trk">☐</td></tr>
+<tr class="sdiv3"><td colspan="8">🟡 DEPRECATED / CHANGED DEFAULTS — Plan Migration Before Future Release</td></tr>
+<tr><td class="comp">IEAOPTxx</td><td>CPENABLE=OFF (prior default behavior)</td><td class="c"><span class="imp-high">🟠 Loss</span></td><td class="c"><span class="s-chg">CHANGED</span></td><td>3.2</td><td>Default now CPENABLE=SYSTEM; CPU automation may conflict</td><td class="repl">→ Test in non-prod LPAR; review capacity tools</td><td class="trk">☐</td></tr>
+<tr><td class="comp">System SSL</td><td>Prior TLS default cipher suite settings</td><td class="c"><span class="imp-high">🟠 Loss</span></td><td class="c"><span class="s-chg">CHANGED</span></td><td>3.2</td><td>Weaker cipher suites may be disabled by new defaults</td><td class="repl">→ Audit AT-TLS policies; test all TLS connections</td><td class="trk">☐</td></tr>
+<tr><td class="comp">BPXPRMxx</td><td>REXXPARSE default behavior (pre-3.2)</td><td class="c"><span class="imp-med">🟡 Action</span></td><td class="c"><span class="s-chg">CHANGED</span></td><td>3.2</td><td>New REXXPARSE param changes REXX detection criteria</td><td class="repl">→ Set REXXPARSE explicitly; test all REXX scripts</td><td class="trk">☐</td></tr>
+<tr><td class="comp">DFSMS</td><td>DCOLLECT DVLCSMSS field</td><td class="c"><span class="imp-med">🟡 Action</span></td><td class="c"><span class="s-rem">REMOVED</span></td><td>3.2</td><td>Field removed from DCOLLECT Output Record Structure</td><td class="repl">→ Update programs parsing DCOLLECT output</td><td class="trk">☐</td></tr>
+<tr><td class="comp">RMF 3.1</td><td>RMF for z/OS 3.1 documentation</td><td class="c"><span class="imp-med">🟡 Action</span></td><td class="c"><span class="s-dep">DEPRECATED</span></td><td>3.2</td><td>RMF 3.1 docs no longer published or maintained</td><td class="repl">→ Use RMF for z/OS 3.2 documentation exclusively</td><td class="trk">☐</td></tr>
+</tbody>
+</table>
+<div class="warning-box">
+            ⚠️ <strong>Migration Rule:</strong> Run <strong>z/OS Upgrade Workflow</strong> in z/OSMF to generate a personalized deprecated-function checklist. All ☐ items must be verified before first test IPL.
+        </div>
+</div>
+</div>
+</body>
+</html>

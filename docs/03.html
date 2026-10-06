@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AI-Infused Capabilities &amp; IBM z17 Support</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<link href="/fonts/Arvo/index.css" rel="stylesheet"/>
+<link href="/fonts/Inter/index.css" rel="stylesheet"/>
+<style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --color-primary: #1976D2;
+            --color-secondary: #0D47A1;
+            --heading-base-size: 2.6rem;
+            --body-base-size: 1.0rem;
+        }
+
+        .slide-container {
+            height: 100vh;
+            width: 100%;
+            background: linear-gradient(180deg, #FFFFFF 0%, #E3F2FD 100%);
+            display: flex;
+            flex-direction: column;
+            font-family: 'Inter', sans-serif;
+            color: #333333;
+            overflow: hidden;
+        }
+
+        .slide-header {
+            text-align: center;
+            padding: 2rem 3rem 1rem 3rem;
+        }
+
+        .slide-title {
+            font-family: 'Arvo', serif;
+            font-size: var(--heading-base-size);
+            font-weight: 700;
+            color: var(--color-primary);
+            margin: 0;
+        }
+
+        .slide-content {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem 3rem 2rem;
+            gap: 2.5rem;
+            overflow: hidden;
+        }
+
+        .content-left {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            max-width: 50vw;
+            max-height: 65vh;
+            overflow: hidden;
+        }
+
+        .content-right {
+            width: min(40vw, calc(65vh * 1.78));
+            height: calc(min(40vw, calc(65vh * 1.78)) / 1.78);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .image-container {
+            width: 100%;
+            height: 100%;
+            aspect-ratio: 1.78;
+            border-radius: 0.75rem;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(25, 118, 210, 0.15);
+        }
+
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .text-block {
+            padding: 1rem;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .section-header {
+            font-family: 'Arvo', serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--color-primary);
+            margin-bottom: 1rem;
+        }
+
+        .custom-list {
+            margin-bottom: 1.5rem;
+        }
+
+        .list-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 0.6rem;
+            padding: 0.3rem 0;
+        }
+
+        .list-item i {
+            margin-right: 0.5rem;
+            font-size: 1.3em;
+            vertical-align: middle;
+            color: var(--color-primary);
+            margin-top: 0.1rem;
+            min-width: 1.3rem;
+        }
+
+        .list-item span {
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+
+        .highlight-feature {
+            color: var(--color-primary);
+            font-weight: 600;
+        }
+
+        .performance-metric {
+            color: var(--color-secondary);
+            font-weight: 600;
+        }
+
+        .summary-note {
+            font-style: italic;
+            color: var(--color-secondary);
+            margin-top: 1rem;
+            padding: 0.6rem;
+            background: rgba(0,0,0,0.05);
+            border-radius: 0.5rem;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+<div class="slide-container">
+<div class="slide-header">
+<h1 class="slide-title">AI-Infused Capabilities &amp; IBM z17 Support</h1>
+</div>
+<div class="slide-content">
+<div class="content-left">
+<div class="text-block">
+<h2 class="section-header">Revolutionary AI Integration</h2>
+<div class="custom-list">
+<div class="list-item">
+<i class="fas fa-microchip"></i>
+<span><span class="highlight-feature">Telum II processor</span> delivers hardware-accelerated AI with <span class="performance-metric">1ms response time</span> for real-time inferencing.</span>
+</div>
+<div class="list-item">
+<i class="fas fa-brain"></i>
+<span><span class="highlight-feature">AI-driven workload management</span> optimizes CPU usage and network batching through intelligent pattern analysis.</span>
+</div>
+<div class="list-item">
+<i class="fas fa-shield-alt"></i>
+<span><span class="highlight-feature">AI threat detection</span> analyzes behavioral patterns to identify security threats in real-time with automated containment.</span>
+</div>
+<div class="list-item">
+<i class="fas fa-chart-line"></i>
+<span><span class="highlight-feature">WLM Policy Advisor</span> provides AI-powered recommendations for optimizing workload distribution and performance tuning.</span>
+</div>
+</div>
+<div class="summary-note">
+<div><strong>Key Innovation:</strong> z/OS 3.2 enables running both traditional and generative AI models directly on sensitive data in-place, minimizing data movement risks.</div>
+</div>
+</div>
+</div>
+<div class="content-right">
+<div class="image-container">
+<img alt="IBM z17 mainframe server with AI capabilities" src="https://newsroom.ibm.com/image/New_IBM_z17_Mainframe_social.jpg?expires=1772850426&amp;signature=9bcd2517d5c4a8d25ee865289938a7867b2601834c144cece4033ae0d508a47f"/>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

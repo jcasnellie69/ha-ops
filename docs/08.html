@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Performance &amp; Scalability Improvements</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<link href="/fonts/Arvo/index.css" rel="stylesheet"/>
+<link href="/fonts/Inter/index.css" rel="stylesheet"/>
+<style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --color-primary: #1976D2;
+            --color-secondary: #0D47A1;
+            --heading-base-size: 2.6rem;
+            --body-base-size: 1.0rem;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            font-size: var(--body-base-size);
+            font-weight: 400;
+            color: #333333;
+            background: linear-gradient(180deg, #FFFFFF 0%, #E3F2FD 100%);
+            overflow: hidden;
+        }
+
+        .slide-container {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            width: 100%;
+            background: linear-gradient(180deg, #FFFFFF 0%, #E3F2FD 100%);
+        }
+
+        .slide-header {
+            text-align: center;
+            padding: 2rem 3rem 1rem;
+        }
+
+        .slide-title {
+            font-family: 'Arvo', serif;
+            font-size: var(--heading-base-size);
+            font-weight: 700;
+            color: var(--color-primary);
+            margin: 0;
+        }
+
+        .slide-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem 3rem;
+            overflow: hidden;
+        }
+
+        .big-number-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            width: 100%;
+            max-width: 80vw;
+        }
+
+        .main-metric {
+            font-family: 'Arvo', serif;
+            font-size: 6rem;
+            font-weight: 700;
+            color: var(--color-primary);
+            margin-bottom: 1rem;
+            line-height: 1;
+        }
+
+        .metric-label {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--color-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            width: 100%;
+            max-width: 75vw;
+            margin-bottom: 2rem;
+        }
+
+        .metric-card {
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 4px 16px rgba(25, 118, 210, 0.1);
+        }
+
+        .metric-number {
+            font-family: 'Arvo', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--color-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-description {
+            font-size: 0.95rem;
+            color: #333333;
+            line-height: 1.4;
+        }
+
+        .highlight-improvement {
+            color: var(--color-secondary);
+            font-weight: 600;
+        }
+
+        .summary-insight {
+            font-style: italic;
+            color: var(--color-secondary);
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background: rgba(0,0,0,0.05);
+            border-radius: 0.75rem;
+            max-width: 70vw;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+    </style>
+</head>
+<body>
+<div class="slide-container">
+<div class="slide-header">
+<h1 class="slide-title">Performance &amp; Scalability Improvements</h1>
+</div>
+<div class="slide-content">
+<div class="big-number-container">
+<div class="main-metric">450B+</div>
+<div class="metric-label">Daily AI Inferencing Operations</div>
+<div class="metrics-grid">
+<div class="metric-card">
+<div class="metric-number">40%</div>
+<div class="metric-description">Reduction in <span class="highlight-improvement">administrative overhead</span> through z/OSMF automation</div>
+</div>
+<div class="metric-card">
+<div class="metric-number">1ms</div>
+<div class="metric-description"><span class="highlight-improvement">Response time</span> for AI-accelerated workload decisions</div>
+</div>
+<div class="metric-card">
+<div class="metric-number">25%</div>
+<div class="metric-description">Improvement in <span class="highlight-improvement">network throughput</span> with intelligent packet batching</div>
+</div>
+</div>
+<div class="summary-insight">
+<div><strong>Performance Breakthrough:</strong> z/OS 3.2 delivers unprecedented scalability with Telum II processor enabling real-time AI processing while maintaining mainframe-class reliability and security.</div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

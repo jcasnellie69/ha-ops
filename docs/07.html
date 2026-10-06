@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sys1.parmlib Settings Evolution (z/OS 2.1 → 3.2)</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<link href="/fonts/Arvo/index.css" rel="stylesheet"/>
+<link href="/fonts/Inter/index.css" rel="stylesheet"/>
+<style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --color-primary: #1976D2;
+            --color-secondary: #0D47A1;
+            --heading-base-size: 2.6rem;
+            --body-base-size: 1.0rem;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            font-size: var(--body-base-size);
+            font-weight: 400;
+            color: #333333;
+            background: linear-gradient(180deg, #FFFFFF 0%, #E3F2FD 100%);
+            overflow: hidden;
+        }
+
+        .slide-container {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            width: 100%;
+            background: linear-gradient(180deg, #FFFFFF 0%, #E3F2FD 100%);
+        }
+
+        .slide-header {
+            text-align: center;
+            padding: 1.5rem 3rem 1rem;
+        }
+
+        .slide-title {
+            font-family: 'Arvo', serif;
+            font-size: calc(var(--heading-base-size) * 0.9);
+            font-weight: 700;
+            color: var(--color-primary);
+            margin: 0;
+        }
+
+        .slide-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem 2rem 2rem;
+            overflow: hidden;
+        }
+
+        .table-container {
+            width: 100%;
+            max-width: 95vw;
+            max-height: 55vh;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 16px rgba(25, 118, 210, 0.1);
+        }
+
+        .parmlib-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+        }
+
+        .parmlib-table th {
+            background: var(--color-primary);
+            color: white;
+            padding: 0.7rem 0.5rem;
+            text-align: left;
+            font-family: 'Arvo', serif;
+            font-weight: 700;
+            font-size: 0.8rem;
+            border-right: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .parmlib-table td {
+            padding: 0.6rem 0.5rem;
+            border-bottom: 1px solid #e0e0e0;
+            border-right: 1px solid #e0e0e0;
+            vertical-align: top;
+        }
+
+        .parmlib-table tr:nth-child(even) {
+            background: rgba(25, 118, 210, 0.03);
+        }
+
+        .parmlib-table tr:hover {
+            background: rgba(25, 118, 210, 0.08);
+        }
+
+        .parameter-name {
+            font-weight: 600;
+            color: var(--color-secondary);
+            font-family: 'Courier New', monospace;
+        }
+
+        .version-new {
+            background: #E8F5E8;
+            color: #2E7D32;
+            padding: 0.2rem 0.4rem;
+            border-radius: 0.3rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .version-enhanced {
+            background: #FFF3E0;
+            color: #F57C00;
+            padding: 0.2rem 0.4rem;
+            border-radius: 0.3rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .version-unchanged {
+            background: #F5F5F5;
+            color: #616161;
+            padding: 0.2rem 0.4rem;
+            border-radius: 0.3rem;
+            font-size: 0.75rem;
+        }
+
+        .summary-section {
+            margin-top: 1.5rem;
+            width: 100%;
+            max-width: 95vw;
+        }
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .summary-card {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 1rem;
+            border-radius: 0.5rem;
+            text-align: center;
+            border: 2px solid var(--color-primary);
+        }
+
+        .summary-number {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--color-primary);
+            margin-bottom: 0.3rem;
+        }
+
+        .summary-label {
+            font-size: 0.8rem;
+            color: var(--color-secondary);
+            font-weight: 600;
+        }
+
+        .migration-note {
+            background: rgba(25, 118, 210, 0.1);
+            padding: 0.8rem;
+            border-radius: 0.5rem;
+            border-left: 4px solid var(--color-primary);
+            font-size: 0.85rem;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="slide-container">
+<div class="slide-header">
+<h1 class="slide-title">Sys1.parmlib Settings Evolution (z/OS 2.1 → 3.2)</h1>
+</div>
+<div class="slide-content">
+<div class="table-container">
+<table class="parmlib-table">
+<thead>
+<tr>
+<th style="width: 20%;">Parameter</th>
+<th style="width: 15%;">z/OS 2.1</th>
+<th style="width: 15%;">z/OS 2.4</th>
+<th style="width: 15%;">z/OS 3.1</th>
+<th style="width: 15%;">z/OS 3.2</th>
+<th style="width: 20%;">Key Changes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="parameter-name">RACF_SUBSYS</span></td>
+<td><span class="version-unchanged">Basic</span></td>
+<td><span class="version-unchanged">Basic</span></td>
+<td><span class="version-enhanced">Enhanced</span></td>
+<td><span class="version-new">REUSASID=YES</span></td>
+<td>Reusable ASID support added</td>
+</tr>
+<tr>
+<td><span class="parameter-name">SETROPTS_RACLIST</span></td>
+<td><span class="version-unchanged">Standard</span></td>
+<td><span class="version-unchanged">Standard</span></td>
+<td><span class="version-unchanged">Standard</span></td>
+<td><span class="version-new">+DSNRAUTH</span></td>
+<td>DSNRAUTH class added</td>
+</tr>
+<tr>
+<td><span class="parameter-name">WLM_POLICY</span></td>
+<td><span class="version-unchanged">Manual</span></td>
+<td><span class="version-enhanced">Automated</span></td>
+<td><span class="version-enhanced">AI-Assisted</span></td>
+<td><span class="version-new">AI-Advisor</span></td>
+<td>WLM Policy Advisor integration</td>
+</tr>
+<tr>
+<td><span class="parameter-name">OSMF_CONFIG</span></td>
+<td><span class="version-unchanged">Basic</span></td>
+<td><span class="version-enhanced">Workflow</span></td>
+<td><span class="version-enhanced">Advanced</span></td>
+<td><span class="version-new">Auto-Config</span></td>
+<td>Automated configuration support</td>
+</tr>
+<tr>
+<td><span class="parameter-name">SECURITY_ZONES</span></td>
+<td><span class="version-unchanged">Static</span></td>
+<td><span class="version-unchanged">Static</span></td>
+<td><span class="version-enhanced">Dynamic</span></td>
+<td><span class="version-new">AI-Threat</span></td>
+<td>AI-driven threat detection</td>
+</tr>
+<tr>
+<td><span class="parameter-name">NETWORK_OPT</span></td>
+<td><span class="version-unchanged">Standard</span></td>
+<td><span class="version-enhanced">Optimized</span></td>
+<td><span class="version-enhanced">Batching</span></td>
+<td><span class="version-new">AI-Batching</span></td>
+<td>Intelligent packet batching</td>
+</tr>
+<tr>
+<td><span class="parameter-name">QUANTUM_SAFE</span></td>
+<td><span class="version-unchanged">N/A</span></td>
+<td><span class="version-unchanged">N/A</span></td>
+<td><span class="version-new">Preview</span></td>
+<td><span class="version-new">NIST-PQC</span></td>
+<td>Quantum-safe algorithms</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="summary-section">
+<div class="summary-grid">
+<div class="summary-card">
+<div class="summary-number">12</div>
+<div class="summary-label">New Parameters</div>
+</div>
+<div class="summary-card">
+<div class="summary-number">18</div>
+<div class="summary-label">Enhanced Settings</div>
+</div>
+<div class="summary-card">
+<div class="summary-number">95%</div>
+<div class="summary-label">Backward Compatible</div>
+</div>
+</div>
+<div class="migration-note">
+<strong>Migration Guidance:</strong> Most z/OS 3.2 parmlib enhancements are backward compatible. Review AI-related and quantum-safe parameters for new deployment requirements.
+                </div>
+</div>
+</div>
+</div>
+</body>
+</html>

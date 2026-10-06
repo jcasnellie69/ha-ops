@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Hybrid Cloud Integration</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<link href="/fonts/Arvo/index.css" rel="stylesheet"/>
+<link href="/fonts/Inter/index.css" rel="stylesheet"/>
+<style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --color-primary: #1976D2;
+            --color-secondary: #0D47A1;
+            --heading-base-size: 2.6rem;
+            --body-base-size: 1.0rem;
+        }
+
+        .slide-container {
+            height: 100vh;
+            width: 100%;
+            background: linear-gradient(180deg, #FFFFFF 0%, #E3F2FD 100%);
+            display: flex;
+            flex-direction: column;
+            font-family: 'Inter', sans-serif;
+            color: #333333;
+            overflow: hidden;
+        }
+
+        .slide-header {
+            text-align: center;
+            padding: 2rem 3rem 1rem 3rem;
+        }
+
+        .slide-title {
+            font-family: 'Arvo', serif;
+            font-size: var(--heading-base-size);
+            font-weight: 700;
+            color: var(--color-primary);
+            margin: 0;
+        }
+
+        .slide-content {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem 3rem 2rem;
+            gap: 2.5rem;
+            overflow: hidden;
+        }
+
+        .content-left {
+            width: min(40vw, calc(65vh * 1.52));
+            height: calc(min(40vw, calc(65vh * 1.52)) / 1.52);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .content-right {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            max-width: 50vw;
+            max-height: 65vh;
+            overflow: hidden;
+        }
+
+        .image-container {
+            width: 100%;
+            height: 100%;
+            aspect-ratio: 1.52;
+            border-radius: 0.75rem;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(25, 118, 210, 0.15);
+        }
+
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .text-block {
+            padding: 1rem;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .section-header {
+            font-family: 'Arvo', serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--color-primary);
+            margin-bottom: 1rem;
+        }
+
+        .custom-list {
+            margin-bottom: 1.5rem;
+        }
+
+        .list-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 0.6rem;
+            padding: 0.3rem 0;
+        }
+
+        .list-item i {
+            margin-right: 0.5rem;
+            font-size: 1.3em;
+            vertical-align: middle;
+            color: var(--color-primary);
+            margin-top: 0.1rem;
+            min-width: 1.3rem;
+        }
+
+        .list-item span {
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+
+        .highlight-feature {
+            color: var(--color-primary);
+            font-weight: 600;
+        }
+
+        .cloud-benefit {
+            color: var(--color-secondary);
+            font-weight: 600;
+        }
+
+        .summary-note {
+            font-style: italic;
+            color: var(--color-secondary);
+            margin-top: 1rem;
+            padding: 0.6rem;
+            background: rgba(0,0,0,0.05);
+            border-radius: 0.5rem;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+<div class="slide-container">
+<div class="slide-header">
+<h1 class="slide-title">Hybrid Cloud Integration</h1>
+</div>
+<div class="slide-content">
+<div class="content-left">
+<div class="image-container">
+<img alt="Enterprise computing infrastructure network diagram" src="https://d3ugq33b6jrffx.cloudfront.net/wp-content/uploads/2019/09/Enterprise_Infrastructure_network_diagram_11092017-1.png?expires=1772850595&amp;signature=6b8f69de7eef9d1c1df841e9bccddc9f1b5691cc0bff835a068352118e19e62e"/>
+</div>
+</div>
+<div class="content-right">
+<div class="text-block">
+<h2 class="section-header">Modern Cloud Connectivity</h2>
+<div class="custom-list">
+<div class="list-item">
+<i class="fas fa-cloud"></i>
+<span><span class="highlight-feature">Modern APIs</span> enable seamless data access without costly ETL processes for hybrid cloud environments.</span>
+</div>
+<div class="list-item">
+<i class="fas fa-network-wired"></i>
+<span><span class="highlight-feature">Docker container support</span> with built-in networking from Communications Server Sysplex Distributor.</span>
+</div>
+<div class="list-item">
+<i class="fas fa-balance-scale"></i>
+<span><span class="highlight-feature">Automatic load balancing</span> routes traffic without external load balancers, maintaining mainframe-level reliability.</span>
+</div>
+<div class="list-item">
+<i class="fas fa-sync-alt"></i>
+<span><span class="highlight-feature">Real-time integration</span> allows applications to access mainframe data directly in cloud-native architectures.</span>
+</div>
+</div>
+<div class="summary-note">
+<div><strong>Strategic Advantage:</strong> z/OS 3.2 bridges traditional mainframe reliability with modern cloud flexibility, enabling true hybrid architecture without compromising security.</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

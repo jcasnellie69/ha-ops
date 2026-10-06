@@ -1,0 +1,79 @@
+{
+  "workflow_name": "zos-ipl-automation",
+  "workflow_display_name": "z/OS 3.2 Post-IPL Validation & Migration Automation",
+  "description": "Runs post-IPL validation checks (PARMLIB, RACF/ICSF, JES2, OMVS), auto-closes resolved IPL blockers in GitHub Projects v2, syncs results to Jira epics, and generates a signed-off CAB migration completion report.",
+  "version": "1.0.0",
+  "created_date": "2026-09-13",
+  "parameters": [
+    {
+      "name": "ipl_lpar",
+      "display_name": "Target LPAR Name",
+      "description": "The LPAR that completed IPL (e.g. SYSA, SYSB)",
+      "type": "string",
+      "required": true,
+      "default": "SYSA"
+    },
+    {
+      "name": "ipl_timestamp",
+      "display_name": "IPL Completion Timestamp",
+      "description": "ISO 8601 timestamp when IPL completed (e.g. 2026-09-13T07:00:00Z)",
+      "type": "string",
+      "required": true,
+      "default": ""
+    },
+    {
+      "name": "environment",
+      "display_name": "Environment Type",
+      "description": "Whether this is a non-production or production IPL",
+      "type": "string",
+      "required": true,
+      "default": "non-production"
+    },
+    {
+      "name": "cab_change_id",
+      "display_name": "CAB Change Record ID",
+      "description": "Change Advisory Board change record ID (e.g. CHG0012345)",
+      "type": "string",
+      "required": false,
+      "default": ""
+    },
+    {
+      "name": "jira_epic_key",
+      "display_name": "Jira Epic Key",
+      "description": "Jira epic to update with validation results (e.g. ZOSM-1)",
+      "type": "string",
+      "required": false,
+      "default": ""
+    }
+  ],
+  "steps": [
+    {
+      "step_number": 1,
+      "step_name": "setup_github_board",
+      "display_name": "Setup GitHub Project Board",
+      "description": "Create GitHub Projects v2 board with sprint fields, custom fields, views, labels, and milestones for the z/OS 3.2 migration",
+      "parameters_used": []
+    },
+    {
+      "step_number": 2,
+      "step_name": "create_migration_issues",
+      "display_name": "Create Migration Issues from Excel",
+      "description": "Parse the z/OS migration Excel workbook and create GitHub Issues with labels, sprint assignments, and acceptance criteria for all PARMLIB, deprecated, and function matrix items",
+      "parameters_used": []
+    },
+    {
+      "step_number": 3,
+      "step_name": "run_post_ipl_validation",
+      "display_name": "Run Post-IPL Validation Suite",
+      "description": "Trigger the post-IPL validation GitHub Actions workflow to check PARMLIB parameters, RACF/ICSF health, JES2 spool status, and OMVS filesystem mounts on the target LPAR",
+      "parameters_used": ["ipl_lpar", "ipl_timestamp", "environment", "cab_change_id", "jira_epic_key"]
+    },
+    {
+      "step_number": 4,
+      "step_name": "generate_dashboard",
+      "display_name": "Generate Real-Time Dashboard",
+      "description": "Open the interactive IPL validation and blocker escalation dashboard showing SLA breach timelines, blocker counts by sprint and component, GitHub-to-Jira sync lag metrics, and team heat map",
+      "parameters_used": ["ipl_lpar", "environment"]
+    }
+  ]
+}

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>z/OS 3.2 Function Matrix — Part 1: AI, Security &amp; Cloud</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
+<link href="/fonts/Arvo/index.css" rel="stylesheet"/>
+<link href="/fonts/Inter/index.css" rel="stylesheet"/>
+<style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root { --color-primary: #1976D2; --color-secondary: #0D47A1; }
+    body { font-family: 'Inter', sans-serif; color: #333; background: linear-gradient(180deg, #FFFFFF 0%, #E3F2FD 100%); overflow: hidden; }
+    .slide-container { display: flex; flex-direction: column; height: 100vh; width: 100%; background: linear-gradient(180deg, #FFFFFF 0%, #E3F2FD 100%); }
+    .slide-header { text-align: center; padding: 1rem 2rem 0.3rem; }
+    .slide-title { font-family: 'Arvo', serif; font-size: 1.7rem; font-weight: 700; color: var(--color-primary); }
+    .slide-subtitle { font-size: 0.72rem; color: #666; margin-top: 0.15rem; }
+    .slide-content { flex: 1; display: flex; flex-direction: column; padding: 0.3rem 1.2rem 0.4rem; overflow: hidden; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.68rem; table-layout: fixed; }
+    thead tr { background: var(--color-primary); color: #fff; }
+    thead th { padding: 0.3rem 0.4rem; text-align: left; font-family: 'Arvo', serif; font-weight: 700; font-size: 0.67rem; overflow: hidden; }
+    thead th.c { text-align: center; }
+    tbody tr:nth-child(even) { background: #F0F7FF; }
+    tbody tr:nth-child(odd) { background: #FAFCFF; }
+    tbody td { padding: 0.22rem 0.4rem; border-bottom: 1px solid #DDEEFF; vertical-align: middle; line-height: 1.2; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+    .comp { font-family: 'Arvo', serif; font-weight: 700; color: var(--color-secondary); font-size: 0.65rem; }
+    .c { text-align: center; }
+    .p1 { background: #C62828; color: #fff; padding: 0.08rem 0.28rem; border-radius: 0.2rem; font-size: 0.6rem; font-weight: 700; }
+    .p2 { background: #E65100; color: #fff; padding: 0.08rem 0.28rem; border-radius: 0.2rem; font-size: 0.6rem; font-weight: 700; }
+    .p3 { background: #2E7D32; color: #fff; padding: 0.08rem 0.28rem; border-radius: 0.2rem; font-size: 0.6rem; font-weight: 700; }
+    .s-new { background: #E8F5E9; color: #1B5E20; padding: 0.08rem 0.25rem; border-radius: 0.18rem; font-size: 0.6rem; font-weight: 700; }
+    .s-chg { background: #FFF3E0; color: #BF360C; padding: 0.08rem 0.25rem; border-radius: 0.18rem; font-size: 0.6rem; font-weight: 700; }
+    .s-enh { background: #E3F2FD; color: #0D47A1; padding: 0.08rem 0.25rem; border-radius: 0.18rem; font-size: 0.6rem; font-weight: 700; }
+    .f-ai  { color: #6A1B9A; font-weight: 600; font-size: 0.63rem; }
+    .f-sec { color: #B71C1C; font-weight: 600; font-size: 0.63rem; }
+    .f-cld { color: #00695C; font-weight: 600; font-size: 0.63rem; }
+    .f-qsc { color: #1565C0; font-weight: 600; font-size: 0.63rem; }
+    .trk { text-align: center; color: #aaa; font-size: 0.72rem; }
+    .legend { display: flex; gap: 0.8rem; justify-content: center; padding: 0.25rem 0 0; font-size: 0.62rem; flex-wrap: wrap; }
+    .leg { display: flex; align-items: center; gap: 0.2rem; }
+    .sdiv td { background: #1565C0; color: #fff; font-family: 'Arvo', serif; font-weight: 700; font-size: 0.63rem; padding: 0.18rem 0.4rem; letter-spacing: 0.04em; white-space: nowrap; }
+</style>
+</head>
+<body>
+<div class="slide-container">
+<div class="slide-header">
+<h1 class="slide-title">z/OS 3.2 Function Matrix — Part 1: AI, Security &amp; Cloud</h1>
+<div class="slide-subtitle">Priority: 🔴 Critical  |  🟠 Important  |  🟢 Beneficial  ·  Status: NEW · CHG · ENH  ·  ☐ = Track</div>
+</div>
+<div class="slide-content">
+<table>
+<colgroup>
+<col style="width:9%"/><col style="width:26%"/><col style="width:9%"/><col style="width:7%"/>
+<col style="width:7%"/><col style="width:7%"/><col style="width:28%"/><col style="width:7%"/>
+</colgroup>
+<thead>
+<tr>
+<th>Component</th><th>Function / Feature</th><th class="c">Priority</th>
+<th class="c">Status</th><th>Focus</th><th>When</th><th>Key Detail</th><th class="c">Track</th>
+</tr>
+</thead>
+<tbody>
+<tr class="sdiv"><td colspan="8">AI WORKLOADS — BCP &amp; Communications Server</td></tr>
+<tr><td class="comp">BCP</td><td>AI System Services 1.2 — ML for z/OS Core Edition</td><td class="c"><span class="p1">🔴 Critical</span></td><td class="c"><span class="s-new">NEW</span></td><td class="f-ai">AI</td><td>Sep 2025</td><td>AI inferencing integrated into base OS; replaces AISS 1.1</td><td class="trk">☐</td></tr>
+<tr><td class="comp">BCP</td><td>zDNN support for IBM z17 / Telum II processor</td><td class="c"><span class="p1">🔴 Critical</span></td><td class="c"><span class="s-enh">ENH</span></td><td class="f-ai">AI</td><td>Sep 2025</td><td>Deep Neural Network library updated for Telum II accelerator</td><td class="trk">☐</td></tr>
+<tr><td class="comp">BCP</td><td>WLM_SCLASS_SYSSTC health check</td><td class="c"><span class="p2">🟠 Imp</span></td><td class="c"><span class="s-new">NEW</span></td><td class="f-ai">AI</td><td>Sep 2025</td><td>Health check for WLM service class assignments for STCs</td><td class="trk">☐</td></tr>
+<tr><td class="comp">BCP</td><td>Tailored Fit Pricing for zIIP workloads</td><td class="c"><span class="p2">🟠 Imp</span></td><td class="c"><span class="s-new">NEW</span></td><td class="f-ai">AI</td><td>Sep 2025</td><td>Hardware pricing model for zIIP-eligible AI workloads</td><td class="trk">☐</td></tr>
+<tr><td class="comp">BCP</td><td>Workload-level power consumption reporting</td><td class="c"><span class="p3">🟢 Ben</span></td><td class="c"><span class="s-new">NEW</span></td><td class="f-ai">AI</td><td>Sep 2025</td><td>Power usage reporting at workload granularity</td><td class="trk">☐</td></tr>
+<tr><td class="comp">Comm Svr</td><td>AI-assisted outbound packet batching</td><td class="c"><span class="p1">🔴 Critical</span></td><td class="c"><span class="s-new">NEW</span></td><td class="f-ai">AI</td><td>Sep 2025</td><td>AI model optimizes batch size/timing; reduces CPU overhead</td><td class="trk">☐</td></tr>
+<tr><td class="comp">Comm Svr</td><td>WLM Policy Advisor</td><td class="c"><span class="p1">🔴 Critical</span></td><td class="c"><span class="s-new">NEW</span></td><td class="f-ai">AI</td><td>Sep 2025</td><td>AI assistant recommends WLM policy for network/AI workloads</td><td class="trk">☐</td></tr>
+<tr class="sdiv"><td colspan="8">SECURITY — RACF &amp; ICSF / Quantum-Safe Cryptography</td></tr>
+<tr><td class="comp">RACF</td><td>User ID Containment</td><td class="c"><span class="p1">🔴 Critical</span></td><td class="c"><span class="s-new">NEW</span></td><td class="f-sec">Security</td><td>Sep 2025</td><td>Immediately stops access during active sessions (OA67286)</td><td class="trk">☐</td></tr>
+<tr><td class="comp">RACF</td><td>AI-driven threat detection &amp; quarantine</td><td class="c"><span class="p1">🔴 Critical</span></td><td class="c"><span class="s-new">NEW</span></td><td class="f-sec">Security</td><td>Sep 2025</td><td>Behavioral pattern analysis with RACF-based quarantine</td><td class="trk">☐</td></tr>
+<tr><td class="comp">RACF</td><td>Secrets Management support</td><td class="c"><span class="p1">🔴 Critical</span></td><td class="c"><span class="s-new">NEW</span></td><td class="f-sec">Security</td><td>Jun 2026</td><td>New secrets management capability for credentials</td><td class="trk">☐</td></tr>
+<tr><td class="comp">RACF</td><td>Password phrase self-service &amp; bypass syntax rules</td><td class="c"><span class="p2">🟠 Imp</span></td><td class="c"><span class="s-new">NEW</span></td><td class="f-sec">Security</td><td>Sep 2025</td><td>Users manage own phrases; installation can override IBM defaults</td><td class="trk">☐</td></tr>
+<tr><td class="comp">RACF</td><td>RACDCERT multiple alternate names (SANs)</td><td class="c"><span class="p2">🟠 Imp</span></td><td class="c"><span class="s-enh">ENH</span></td><td class="f-sec">Security</td><td>Sep 2025</td><td>Certificate generation supports multiple Subject Alternate Names</td><td class="trk">☐</td></tr>
+<tr><td class="comp">ICSF</td><td>NIST PQC algorithms GA (ML-KEM, ML-DSA, SLH-DSA)</td><td class="c"><span class="p1">🔴 Critical</span></td><td class="c"><span class="s-new">NEW</span></td><td class="f-qsc">QSC</td><td>Sep 2025</td><td>Production-ready quantum-safe algorithms on z17</td><td class="trk">☐</td></tr>
+<tr><td class="comp">ICSF</td><td>System SSL default updates</td><td class="c"><span class="p1">🔴 Critical</span></td><td class="c"><span class="s-chg">CHG</span></td><td class="f-qsc">QSC</td><td>Sep 2025</td><td>TLS defaults updated; weaker cipher suites may be disabled</td><td class="trk">☐</td></tr>
+<tr><td class="comp">ICSF</td><td>MK Query update &amp; storage constraint relief</td><td class="c"><span class="p2">🟠 Imp</span></td><td class="c"><span class="s-enh">ENH</span></td><td class="f-qsc">QSC</td><td>Sep 2025</td><td>Master Key query enhancements; ICSF storage usage optimized</td><td class="trk">☐</td></tr>
+<tr class="sdiv"><td colspan="8">HYBRID CLOUD — Communications Server, OMVS &amp; z/OSMF</td></tr>
+<tr><td class="comp">Comm Svr</td><td>IPv6 R1 Compliance</td><td class="c"><span class="p2">🟠 Imp</span></td><td class="c"><span class="s-new">NEW</span></td><td class="f-cld">Cloud</td><td>Sep 2025</td><td>Fragmentation, Stable Privacy, Default Address Selection policy</td><td class="trk">☐</td></tr>
+<tr><td class="comp">Comm Svr</td><td>Docker container networking / Sysplex Distributor</td><td class="c"><span class="p2">🟠 Imp</span></td><td class="c"><span class="s-enh">ENH</span></td><td class="f-cld">Cloud</td><td>Sep 2025</td><td>Auto-routes traffic to containers without external load balancer</td><td class="trk">☐</td></tr>
+<tr><td class="comp">OMVS</td><td>z/OS OpenTelemetry Emitter</td><td class="c"><span class="p1">🔴 Critical</span></td><td class="c"><span class="s-new">NEW</span></td><td class="f-cld">Cloud</td><td>Sep 2025</td><td>Telemetry emission for hybrid cloud observability (OA66345)</td><td class="trk">☐</td></tr>
+<tr><td class="comp">OMVS</td><td>Password-less logins for NFS server/client</td><td class="c"><span class="p2">🟠 Imp</span></td><td class="c"><span class="s-new">NEW</span></td><td class="f-cld">Cloud</td><td>Sep 2025</td><td>NFS password-less authentication support</td><td class="trk">☐</td></tr>
+<tr><td class="comp">z/OSMF</td><td>Software install / OS config / data admin automation</td><td class="c"><span class="p2">🟠 Imp</span></td><td class="c"><span class="s-enh">ENH</span></td><td class="f-cld">Cloud</td><td>Sep 2025</td><td>Reduced manual steps; z/OS &amp; z17 Upgrade Workflows updated</td><td class="trk">☐</td></tr>
+</tbody>
+</table>
+<div class="legend">
+<div class="leg"><span class="s-new">NEW</span> New function</div>
+<div class="leg"><span class="s-chg">CHG</span> Changed default</div>
+<div class="leg"><span class="s-enh">ENH</span> Enhancement</div>
+<div class="leg"><span class="f-ai">■</span> AI</div>
+<div class="leg"><span class="f-sec">■</span> Security</div>
+<div class="leg"><span class="f-qsc">■</span> Quantum-Safe</div>
+<div class="leg"><span class="f-cld">■</span> Hybrid Cloud</div>
+</div>
+</div>
+</div>
+</body>
+</html>

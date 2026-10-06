@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Security &amp; Compliance Enhancements</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<link href="/fonts/Arvo/index.css" rel="stylesheet"/>
+<link href="/fonts/Inter/index.css" rel="stylesheet"/>
+<style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --color-primary: #1976D2;
+            --color-secondary: #0D47A1;
+            --heading-base-size: 2.6rem;
+            --body-base-size: 1.0rem;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            font-size: var(--body-base-size);
+            font-weight: 400;
+            color: #333333;
+            background: linear-gradient(180deg, #FFFFFF 0%, #E3F2FD 100%);
+            overflow: hidden;
+        }
+
+        .slide-container {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            width: 100%;
+            background: linear-gradient(180deg, #FFFFFF 0%, #E3F2FD 100%);
+        }
+
+        .slide-header {
+            text-align: center;
+            padding: 2rem 3rem 1rem;
+        }
+
+        .slide-title {
+            font-family: 'Arvo', serif;
+            font-size: var(--heading-base-size);
+            font-weight: 700;
+            color: var(--color-primary);
+            margin: 0;
+        }
+
+        .slide-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 1.5rem 3rem 2rem;
+            overflow: hidden;
+        }
+
+        .comparison-container {
+            display: flex;
+            width: 100%;
+            max-width: 90vw;
+            gap: 2.5rem;
+            height: 100%;
+            max-height: 50vh;
+            overflow: hidden;
+        }
+
+        .column {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 1rem;
+            overflow: hidden;
+        }
+
+        .column-header {
+            font-family: 'Arvo', serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--color-primary);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .custom-list {
+            flex: 1;
+            overflow: hidden;
+        }
+
+        .list-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 0.6rem;
+            padding: 0.3rem 0;
+        }
+
+        .list-item i {
+            margin-right: 0.5rem;
+            font-size: 1.3em;
+            vertical-align: middle;
+            color: var(--color-primary);
+            margin-top: 0.1rem;
+            min-width: 1.3rem;
+        }
+
+        .list-item span {
+            font-size: 0.9rem;
+            line-height: 1.3;
+        }
+
+        .highlight-feature {
+            color: var(--color-primary);
+            font-weight: 600;
+        }
+
+        .security-benefit {
+            color: var(--color-secondary);
+            font-weight: 500;
+        }
+
+        .compliance-standard {
+            color: #2E7D32;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+<div class="slide-container">
+<div class="slide-header">
+<h1 class="slide-title">Security &amp; Compliance Enhancements</h1>
+</div>
+<div class="slide-content">
+<div class="comparison-container">
+<div class="column">
+<h2 class="column-header">Security Features</h2>
+<div class="custom-list">
+<div class="list-item">
+<i class="fas fa-user-lock"></i>
+<span><span class="highlight-feature">RACF User ID Containment</span> immediately stops user access to protected resources during active sessions.</span>
+</div>
+<div class="list-item">
+<i class="fas fa-shield-alt"></i>
+<span><span class="highlight-feature">Quantum-Safe Algorithms</span> implement NIST quantum-safe standards for future-proof encryption protection.</span>
+</div>
+<div class="list-item">
+<i class="fas fa-brain"></i>
+<span><span class="highlight-feature">AI Threat Detection</span> analyzes behavioral patterns to identify and contain security threats in real-time.</span>
+</div>
+<div class="list-item">
+<i class="fas fa-database"></i>
+<span><span class="highlight-feature">31-bit ACEEs</span> support for third-party access control elements above 24-bit storage line.</span>
+</div>
+<div class="list-item">
+<i class="fas fa-sync-alt"></i>
+<span><span class="highlight-feature">Reusable ASID</span> prevents lost address space identifiers through improved resource management.</span>
+</div>
+</div>
+</div>
+<div class="column">
+<h2 class="column-header">Compliance Benefits</h2>
+<div class="custom-list">
+<div class="list-item">
+<i class="fas fa-certificate"></i>
+<span><span class="compliance-standard">SOX Compliance</span> enhanced through automated audit trails and real-time monitoring capabilities.</span>
+</div>
+<div class="list-item">
+<i class="fas fa-globe"></i>
+<span><span class="compliance-standard">GDPR Readiness</span> with advanced data protection and privacy controls for European operations.</span>
+</div>
+<div class="list-item">
+<i class="fas fa-balance-scale"></i>
+<span><span class="compliance-standard">HIPAA Support</span> through enhanced encryption and access control mechanisms for healthcare data.</span>
+</div>
+<div class="list-item">
+<i class="fas fa-university"></i>
+<span><span class="compliance-standard">PCI DSS</span> compliance strengthened with quantum-safe payment processing capabilities.</span>
+</div>
+<div class="list-item">
+<i class="fas fa-eye"></i>
+<span><span class="compliance-standard">Regulatory Reporting</span> simplified through automated compliance monitoring and documentation.</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
