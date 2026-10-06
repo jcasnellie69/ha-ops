@@ -531,8 +531,8 @@ Examples:
         print("❌ GitHub repo required. Use --repo owner/repo")
         sys.exit(1)
 
-    owner_login = args.org or args.user
-    is_org      = bool(args.org)
+    owner_login = args.org or args.user or os.environ.get("GH_ORG") or os.environ.get("GH_USER")
+    is_org      = bool(args.org or (not args.user and os.environ.get("GH_ORG")))
 
     if not owner_login:
         owner_login = repo.split("/")[0]
