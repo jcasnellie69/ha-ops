@@ -342,13 +342,13 @@ def create_iteration_field(client: GraphQLClient, project_id: str,
         d += timedelta(days=sprint["duration"])
 
     mutation = """
-    mutation($projectId: ID!, $name: String!, $iterations: [ProjectV2IterationFieldIterationInput!]!) {
+    mutation($projectId: ID!, $name: String!, $startDate: Date!, $iterations: [ProjectV2Iteration!]!) {
       createProjectV2Field(input: {
         projectId: $projectId,
         dataType: ITERATION,
         name: $name,
         iterationConfiguration: {
-          startDay: 1,
+          startDate: $startDate,
           duration: 14,
           iterations: $iterations
         }
@@ -361,6 +361,7 @@ def create_iteration_field(client: GraphQLClient, project_id: str,
     r = client.query(mutation, {
         "projectId":  project_id,
         "name":       "Sprint",
+        "startDate":  start_date,
         "iterations": iterations,
     })
     try:
