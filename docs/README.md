@@ -24,8 +24,11 @@ pip install -r requirements.txt
 
 ### 2. Configure environment
 ```bash
-cp .env.template .env
-# Edit .env with your GitHub token and repo
+cp docs/.env.template .env
+# Edit .env with your GitHub token and repo, then run:
+set -a
+. ./.env
+set +a
 ```
 
 ### 3. Set up the Project board FIRST
