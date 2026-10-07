@@ -40,7 +40,7 @@ except ImportError:
 
 # ── Constants ─────────────────────────────────────────────────────────────────
 
-DEFAULT_WORKBOOK = "excel_report/zos-migration-risk/zos-migration-risk-comparison.xlsx"
+DEFAULT_WORKBOOK = str(Path(__file__).resolve().with_name("zos-migration-risk-comparison.xlsx"))
 
 GITHUB_API      = "https://api.github.com"
 GITHUB_GRAPHQL  = "https://api.github.com/graphql"
