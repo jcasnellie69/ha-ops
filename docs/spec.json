@@ -1,8 +1,19 @@
 {
-  "_change_header": "# D100626T2223 | HA-0001 | correct HFS-to-zFS migration action | JC | ha-ops repo",
+  "_change_header": "# D20261007T0600 | HA-0011 | document supported issue sheets | JC | ha-ops repo",
   "workbooks": [
     {
       "file_name": "zos-migration-risk-comparison.xlsx",
+      "issue_creation": {
+        "supported_sheets": [
+          "PARMLIB Changes",
+          "Deprecated & Removed",
+          "Function Matrix"
+        ],
+        "not_supported_for_issue_creation": [
+          "Overview",
+          "Security Requirements"
+        ]
+      },
       "sheets": [
         {
           "name": "Overview",

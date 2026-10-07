@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 # D100726T0227 | HA-0001 | correct migration script paths | JC | ha-ops repo
+# D20261007T0600 | HA-0011 | validate workbook before GitHub changes | JC | ha-ops repo
 """
 z/OS 3.2 Migration — GitHub Issue & Project Board Automation
 =============================================================
@@ -14,10 +15,10 @@ Usage:
   # PARMLIB sheet only
   python docs/create_migration_issues.py --token $GH_TOKEN --repo owner/repo --sheets "PARMLIB Changes"
 
-  # All sheets
+  # All supported issue sheets
   python docs/create_migration_issues.py --token $GH_TOKEN --repo owner/repo
 
-  # All sheets + add to Project board
+  # All supported issue sheets + add to Project board
   python docs/create_migration_issues.py --token $GH_TOKEN --repo owner/repo --project-id PVT_xxx
 
 Requirements:
@@ -29,11 +30,13 @@ import json
 import os
 import sys
 import time
+from zipfile import BadZipFile
 from pathlib import Path
 
 try:
     import openpyxl
     import requests
+    from openpyxl.utils.exceptions import InvalidFileException
 except ImportError:
     print("❌ Missing dependencies. Run: pip install openpyxl requests")
     sys.exit(1)
@@ -581,7 +584,7 @@ Examples:
   python docs/create_migration_issues.py --token $GH_TOKEN --repo org/repo \\
     --sheets "PARMLIB Changes"
 
-  # All sheets + project board
+  # All supported issue sheets + project board
   python docs/create_migration_issues.py --token $GH_TOKEN --repo org/repo \\
     --project-id PVT_kgDOBxxxxxx
 
@@ -591,11 +594,11 @@ Examples:
     )
     parser.add_argument("--token",    help="GitHub Personal Access Token (or set GH_TOKEN env var)")
     parser.add_argument("--repo",     help="GitHub repo: owner/repo-name (or set GH_REPO env var)")
-    parser.add_argument("--workbook", default=DEFAULT_WORKBOOK,
-                        help=f"Path to Excel workbook (default: {DEFAULT_WORKBOOK})")
+    parser.add_argument("--workbook", default=None,
+                        help="Path to Excel workbook (overrides GH_WORKBOOK; default: GH_WORKBOOK or docs/zos-migration-risk-comparison.xlsx)")
     parser.add_argument("--sheets",   nargs="+",
                         default=["PARMLIB Changes", "Deprecated & Removed", "Function Matrix"],
-                        help="Sheets to process")
+                        help="Supported issue sheets to process (default: all supported issue sheets)")
     parser.add_argument("--project-id", default=None,
                         help="GitHub Projects v2 node ID (PVT_xxx) to add issues to")
     parser.add_argument("--dry-run",  action="store_true",
@@ -622,6 +625,7 @@ Examples:
 
     token = args.token or os.environ.get("GH_TOKEN") or os.environ.get("GITHUB_TOKEN")
     repo  = args.repo  or os.environ.get("GH_REPO")  or os.environ.get("GITHUB_REPO")
+    workbook_path = Path(args.workbook or os.environ.get("GH_WORKBOOK") or DEFAULT_WORKBOOK)
 
     if not token:
         print("❌ GitHub token required. Use --token or set GH_TOKEN in environment/.env")
@@ -630,10 +634,35 @@ Examples:
         print("❌ GitHub repo required. Use --repo owner/repo or set GH_REPO in environment/.env")
         sys.exit(1)
 
-    workbook_path = Path(args.workbook)
-    if not workbook_path.exists():
-        print(f"❌ Workbook not found: {workbook_path}")
+    unsupported_sheets = [name for name in args.sheets if name not in SHEET_PARSERS]
+    if unsupported_sheets:
+        supported = ", ".join(SHEET_PARSERS)
+        print(f"❌ Unsupported issue sheet(s): {', '.join(unsupported_sheets)}")
+        print(f"   Supported issue sheets: {supported}")
         sys.exit(1)
+
+    if not workbook_path.is_file():
+        print(f"❌ Workbook not found or is not a file: {workbook_path}")
+        sys.exit(1)
+
+    print(f"\n📂 Loading workbook: {workbook_path}")
+    try:
+        wb = openpyxl.load_workbook(workbook_path, data_only=True)
+    except (BadZipFile, InvalidFileException, KeyError, OSError, ValueError) as exc:
+        print(f"❌ Unable to read workbook '{workbook_path}': {exc}")
+        sys.exit(1)
+
+    missing_sheets = [name for name in args.sheets if name not in wb.sheetnames]
+    if missing_sheets:
+        print(f"❌ Requested issue sheet(s) not found in workbook: {', '.join(missing_sheets)}")
+        print(f"   Workbook sheets: {', '.join(wb.sheetnames)}")
+        sys.exit(1)
+
+    all_issues = []
+    for sheet_name in args.sheets:
+        rows = SHEET_PARSERS[sheet_name](wb[sheet_name])
+        all_issues.extend(rows)
+        print(f"✅ Parsed {len(rows):3d} issues from '{sheet_name}'")
 
     print(f"""
 ╔══════════════════════════════════════════════════════════════╗
@@ -646,6 +675,10 @@ Examples:
   Dry Run:  {args.dry_run}
 """)
 
+    print(f"\n📋 Total issues to create: {len(all_issues)}")
+    if args.dry_run:
+        print("🔍 DRY RUN — no GitHub API calls will be made\n")
+
     client = GitHubClient(token, repo, dry_run=args.dry_run)
 
     # ── Step 1: Labels ────────────────────────────────────────────────────────
@@ -657,28 +690,6 @@ Examples:
     if not args.skip_milestones:
         print("\n🏁 Creating sprint milestones...")
         milestones = client.ensure_milestones()
-
-    # ── Step 3: Parse workbook ────────────────────────────────────────────────
-    print(f"\n📂 Loading workbook: {workbook_path}")
-    wb = openpyxl.load_workbook(workbook_path, data_only=True)
-
-    all_issues = []
-    for sheet_name in args.sheets:
-        if sheet_name not in wb.sheetnames:
-            print(f"⚠️  Sheet '{sheet_name}' not found — skipping")
-            continue
-        ws     = wb[sheet_name]
-        parser = SHEET_PARSERS.get(sheet_name)
-        if not parser:
-            print(f"⚠️  No parser for sheet '{sheet_name}' — skipping")
-            continue
-        rows = parser(ws)
-        all_issues.extend(rows)
-        print(f"✅ Parsed {len(rows):3d} issues from '{sheet_name}'")
-
-    print(f"\n📋 Total issues to create: {len(all_issues)}")
-    if args.dry_run:
-        print("🔍 DRY RUN — no GitHub API calls will be made\n")
 
     # ── Step 4: Create issues ─────────────────────────────────────────────────
     print("\n🚀 Creating GitHub Issues...\n")
@@ -752,7 +763,16 @@ Examples:
     if not args.dry_run and created_issues:
         print(f"\n  🔗 View issues: https://github.com/{repo}/issues")
         if args.project_id:
-            print(f"  📋 View board:  https://github.com/orgs/{repo.split('/')[0]}/projects")
+            project_org = os.environ.get("GH_ORG")
+            project_user = os.environ.get("GH_USER")
+            if project_org and project_user:
+                print("  📋 Board URL unavailable; set only one of GH_ORG or GH_USER.")
+            elif project_org:
+                print(f"  📋 View board:  https://github.com/orgs/{project_org}/projects")
+            elif project_user:
+                print(f"  📋 View board:  https://github.com/users/{project_user}/projects")
+            else:
+                print("  📋 Board URL unavailable; set GH_ORG or GH_USER to identify the project owner.")
 
     if failed:
         sys.exit(1)

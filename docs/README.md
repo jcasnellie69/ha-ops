@@ -1,4 +1,5 @@
 # D100726T0227 | HA-0001 | correct migration script paths | JC | ha-ops repo
+# D20261007T0600 | HA-0011 | correct issue-generation counts | JC | ha-ops repo
 # z/OS 3.2 Migration — GitHub Automation Scripts
 
 Two scripts to fully automate your GitHub Project board and issue creation
@@ -32,6 +33,9 @@ set -a
 . ./.env
 set +a
 ```
+
+`GH_WORKBOOK` defaults to `docs/zos-migration-risk-comparison.xlsx`;
+`--workbook` overrides the environment setting.
 
 ### 3. Set up the Project board FIRST
 ```bash
@@ -163,10 +167,10 @@ Running against the z/OS 3.2 Migration workbook creates:
 
 | Sheet | Issues | Sprint Assignment |
 |-------|--------|-------------------|
-| PARMLIB Changes | ~21 | Sprint 1–3 (by risk level) |
-| Deprecated & Removed | ~16 | Sprint 1–2 (IPL blockers first) |
-| Function Matrix | ~41 | Sprint 2–5 (by focus area) |
-| **Total** | **~78** | **Across 6 sprints** |
+| PARMLIB Changes | 17 | Sprint 1–3 (by risk level) |
+| Deprecated & Removed | 16 | Sprint 1–2 (IPL blockers first) |
+| Function Matrix | 41 | Sprint 2–5 (by focus area) |
+| **Total** | **74** | **Across assigned sprints 1–5** |
 
 Each issue includes:
 - Full detail table (component, release, priority, risk, impacts)
