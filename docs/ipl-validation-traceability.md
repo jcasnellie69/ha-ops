@@ -1,4 +1,5 @@
 # D100626T2302 | HA-0010 | IPL validation evidence and blocker closure traceability requirements | p.p. Copilot for JC | ha-ops repo
+# D20261007T0600 | HA-0011 | align traceability with implemented stages | JC | ha-ops repo
 
 # IPL Validation Traceability Requirements
 
@@ -8,6 +9,14 @@ These requirements govern automation that reports post-IPL validation results,
 updates blocker issues or project status, transitions Jira items, or produces
 a CAB completion/sign-off report. They apply to workflow behavior and every
 skill, schema, and runbook that describes that behavior.
+
+## Current repository status
+
+This repository currently implements project-board setup and issue creation
+from the supported workbook sheets. It does not contain the post-IPL
+validation workflow or IPL dashboard; validation, blocker transitions,
+Jira/CAB actions, and dashboard stages remain specified requirements, not
+operational behavior.
 
 ## Evidence requirements
 

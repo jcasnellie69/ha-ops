@@ -1,7 +1,8 @@
 {
+  "_change_header": "# D20261007T0600 | HA-0011 | clarify unavailable workflow stages | JC | ha-ops repo",
   "workflow_name": "zos-ipl-automation",
-  "workflow_display_name": "z/OS 3.2 Post-IPL Validation & Migration Automation",
-  "description": "Runs post-IPL validation checks (PARMLIB, RACF/ICSF, JES2, OMVS), auto-closes resolved IPL blockers in GitHub Projects v2, syncs results to Jira epics, and generates a signed-off CAB migration completion report.",
+  "workflow_display_name": "z/OS 3.2 Migration Board and Issue Automation",
+  "description": "Implements GitHub Project board setup and issue creation from supported workbook sheets. Post-IPL validation and dashboard stages are specified but unavailable.",
   "version": "1.0.0",
   "created_date": "2026-09-13",
   "parameters": [
@@ -11,7 +12,8 @@
       "description": "The LPAR that completed IPL (e.g. SYSA, SYSB)",
       "type": "string",
       "required": true,
-      "default": "SYSA"
+      "default": "SYSA",
+      "availability": "unavailable"
     },
     {
       "name": "ipl_timestamp",
@@ -19,7 +21,8 @@
       "description": "ISO 8601 timestamp when IPL completed (e.g. 2026-09-13T07:00:00Z)",
       "type": "string",
       "required": true,
-      "default": ""
+      "default": "",
+      "availability": "unavailable"
     },
     {
       "name": "environment",
@@ -27,7 +30,8 @@
       "description": "Whether this is a non-production or production IPL",
       "type": "string",
       "required": true,
-      "default": "non-production"
+      "default": "non-production",
+      "availability": "unavailable"
     },
     {
       "name": "cab_change_id",
@@ -35,7 +39,8 @@
       "description": "Change Advisory Board change record ID (e.g. CHG0012345)",
       "type": "string",
       "required": false,
-      "default": ""
+      "default": "",
+      "availability": "unavailable"
     },
     {
       "name": "jira_epic_key",
@@ -43,7 +48,8 @@
       "description": "Jira epic to update with validation results (e.g. ZOSM-1)",
       "type": "string",
       "required": false,
-      "default": ""
+      "default": "",
+      "availability": "unavailable"
     }
   ],
   "steps": [
@@ -65,14 +71,16 @@
       "step_number": 3,
       "step_name": "run_post_ipl_validation",
       "display_name": "Run Post-IPL Validation Suite",
-      "description": "Trigger the post-IPL validation GitHub Actions workflow to check PARMLIB parameters, RACF/ICSF health, JES2 spool status, and OMVS filesystem mounts on the target LPAR",
+      "availability": "unavailable",
+      "description": "Specified stage only; no post-IPL validation workflow is present in this repository.",
       "parameters_used": ["ipl_lpar", "ipl_timestamp", "environment", "cab_change_id", "jira_epic_key"]
     },
     {
       "step_number": 4,
       "step_name": "generate_dashboard",
       "display_name": "Generate Real-Time Dashboard",
-      "description": "Open the interactive IPL validation and blocker escalation dashboard showing SLA breach timelines, blocker counts by sprint and component, GitHub-to-Jira sync lag metrics, and team heat map",
+      "availability": "unavailable",
+      "description": "Specified stage only; no IPL validation dashboard is present in this repository.",
       "parameters_used": ["ipl_lpar", "environment"]
     }
   ]
