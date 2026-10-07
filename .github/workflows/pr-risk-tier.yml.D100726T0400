@@ -1,4 +1,3 @@
-# D100726T0400 | HA-0009 | grant contents:write so Tier A auto-merge can be enabled | p.p. copilot for JC | ha-ops repo
 # D082626T0000 | HA-0009 | PR risk tiering, two tiers not three | p.p. claude-sonnet-5 for JC | ha-ops repo
 #
 # Two tiers only, unlike the infra repo's three -- AGENTS.md sec5 already
@@ -19,7 +18,7 @@ on:
     types: [opened, synchronize, reopened]
 
 permissions:
-  contents: write
+  contents: read
   pull-requests: write
 
 jobs:
