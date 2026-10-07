@@ -34,8 +34,8 @@ set -a
 set +a
 ```
 
-`GH_WORKBOOK` defaults to `docs/zos-migration-risk-comparison.xlsx`;
-`--workbook` overrides the environment setting.
+The default workbook is `docs/zos-migration-risk-comparison.xlsx`;
+`GH_WORKBOOK` overrides it, and `--workbook` takes precedence.
 
 ### 3. Set up the Project board FIRST
 ```bash
