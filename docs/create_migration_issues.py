@@ -365,7 +365,8 @@ class GitHubClient:
 
     def ensure_all_labels(self):
         print("\n🏷️  Ensuring all labels exist...")
-        self.fetch_existing_labels()
+        if not self.dry_run:
+            self.fetch_existing_labels()
         for name, (color, desc) in LABEL_DEFINITIONS.items():
             self.ensure_label(name, color, desc)
 
