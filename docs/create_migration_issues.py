@@ -524,7 +524,7 @@ def setup_project_board(client: GitHubClient, project_id: str,
     sprint_options = {}
     if sprint_field and "configuration" in sprint_field:
         for it in sprint_field["configuration"].get("iterations", []):
-            sprint_options[it["title"]] = it["id"]
+            sprint_options[it["title"].split(" — ", 1)[0]] = it["id"]
         print(f"  Sprint iterations: {list(sprint_options.keys())}")
 
     added = 0
