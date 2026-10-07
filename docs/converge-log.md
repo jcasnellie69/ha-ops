@@ -79,3 +79,6 @@ that table. Requirements are in docs/ipl-validation-traceability.md.
 
 # D100726T0227 | HA-0001 | correct migration script paths | JC | ha-ops repo
 Updated migration script instructions and generated sprint-plan commands to use repository-root-relative `docs/` paths. No deployment performed. Targeted syntax, generated-content, and entry-point checks passed; `./validate.sh` remains blocked because `ansible-lint` is unavailable. Operator review remains the next gate.
+
+# D100726T2010 | HA-0001 | Pages auto-publish | p.p. copilot for JC | ha-ops repo
+D100726T2010 Added `.github/workflows/pages.yml` (push to main -> deploy `docs/` via actions/deploy-pages, no approvals) and `docs/index.html` landing page. Operator-directed; no converge or production host change. Pages source must be set to "GitHub Actions" in repo settings (operator-side). Governance in AGENTS.md untouched.
