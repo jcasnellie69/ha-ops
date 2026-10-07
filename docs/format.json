@@ -1,0 +1,132 @@
+{
+  "file": "zos-migration-risk-comparison.xlsx",
+  "sheets": [
+    {
+      "name": "Overview",
+      "freeze_panes": "A6",
+      "formats": [
+        {"ref": "A1", "bold": true, "font_size": 16, "font_color": "1F4E79"},
+        {"ref": "A2:A3", "italic": true, "font_color": "595959", "font_size": 9},
+        {"ref": "A5:H5", "fill": "1F4E79", "font_color": "FFFFFF", "bold": true, "align": "center", "wrap": true},
+        {"ref": "A:A", "width": 32},
+        {"ref": "B:B", "width": 18},
+        {"ref": "C:C", "width": 22},
+        {"ref": "D:D", "width": 18},
+        {"ref": "E:E", "width": 16},
+        {"ref": "F:F", "width": 16},
+        {"ref": "G:G", "width": 40},
+        {"ref": "H:H", "width": 38},
+        {"ref": "6:13", "height": 22},
+        {"ref": "A6:H13", "border": "thin", "wrap": true},
+        {"ref": "A15:H15", "fill": "D6E4F0", "font_color": "1F4E79", "bold": true},
+        {"ref": "A16:H23", "border": "thin"},
+        {"ref": "A23:H23", "fill": "1F4E79", "font_color": "FFFFFF", "bold": true},
+        {"ref": "A6:H13", "when": "=$E6=\"Very High\"", "fill": "FFC7CE", "font_color": "9C0006"},
+        {"ref": "A6:H13", "when": "=$E6=\"High\"", "fill": "FFEB9C", "font_color": "9C5700"},
+        {"ref": "A6:H13", "when": "=$E6=\"Low\"", "fill": "C6EFCE", "font_color": "276221"}
+      ]
+    },
+    {
+      "name": "PARMLIB Changes",
+      "freeze_panes": "A5",
+      "formats": [
+        {"ref": "A1", "bold": true, "font_size": 14, "font_color": "1F4E79"},
+        {"ref": "A2", "italic": true, "font_color": "595959", "font_size": 9},
+        {"ref": "A4:J4", "fill": "1F4E79", "font_color": "FFFFFF", "bold": true, "align": "center", "wrap": true},
+        {"ref": "A:A", "width": 18},
+        {"ref": "B:B", "width": 48},
+        {"ref": "C:C", "width": 10},
+        {"ref": "D:D", "width": 16},
+        {"ref": "E:E", "width": 14},
+        {"ref": "F:F", "width": 14},
+        {"ref": "G:G", "width": 22},
+        {"ref": "H:H", "width": 14},
+        {"ref": "I:I", "width": 14},
+        {"ref": "J:J", "width": 42},
+        {"ref": "5:21", "height": 28},
+        {"ref": "A5:J21", "border": "thin", "wrap": true},
+        {"ref": "A5:J21", "when": "=$E5=\"IPL FAILURE\"", "fill": "FFC7CE", "font_color": "9C0006"},
+        {"ref": "A5:J21", "when": "=$E5=\"High\"", "fill": "FFEB9C", "font_color": "9C5700"},
+        {"ref": "A5:J21", "when": "=$E5=\"Low\"", "fill": "C6EFCE", "font_color": "276221"},
+        {"ref": "A5:J21", "when": "=$F5=\"YES\"", "fill": "FFC7CE"}
+      ]
+    },
+    {
+      "name": "Deprecated & Removed",
+      "freeze_panes": "A5",
+      "formats": [
+        {"ref": "A1", "bold": true, "font_size": 14, "font_color": "9C0006"},
+        {"ref": "A2", "italic": true, "font_color": "595959", "font_size": 9},
+        {"ref": "A4:I4", "fill": "9C0006", "font_color": "FFFFFF", "bold": true, "align": "center", "wrap": true},
+        {"ref": "A:A", "width": 42},
+        {"ref": "B:B", "width": 12},
+        {"ref": "C:C", "width": 16},
+        {"ref": "D:D", "width": 12},
+        {"ref": "E:E", "width": 14},
+        {"ref": "F:F", "width": 42},
+        {"ref": "G:G", "width": 42},
+        {"ref": "H:H", "width": 16},
+        {"ref": "I:I", "width": 8},
+        {"ref": "5:20", "height": 28},
+        {"ref": "A5:I20", "border": "thin", "wrap": true},
+        {"ref": "A5:I20", "when": "=$D5=\"CRITICAL\"", "fill": "FFC7CE", "font_color": "9C0006"},
+        {"ref": "A5:I20", "when": "=$E5=\"YES\"", "fill": "FFC7CE"},
+        {"ref": "A5:I20", "when": "=$D5=\"High\"", "fill": "FFEB9C", "font_color": "9C5700"},
+        {"ref": "A5:I20", "when": "=$D5=\"Low\"", "fill": "C6EFCE", "font_color": "276221"},
+        {"ref": "A5:I20", "when": "=$C5=\"CHANGED DEFAULT\"", "fill": "FFEB9C", "font_color": "9C5700"},
+        {"ref": "A5:I20", "when": "=$C5=\"DEPRECATED\"", "fill": "FFEB9C", "font_color": "9C5700"}
+      ]
+    },
+    {
+      "name": "Security Requirements",
+      "freeze_panes": "A5",
+      "formats": [
+        {"ref": "A1", "bold": true, "font_size": 14, "font_color": "1F4E79"},
+        {"ref": "A2", "italic": true, "font_color": "595959", "font_size": 9},
+        {"ref": "A4:H4", "fill": "1F4E79", "font_color": "FFFFFF", "bold": true, "align": "center", "wrap": true},
+        {"ref": "A:A", "width": 32},
+        {"ref": "B:B", "width": 16},
+        {"ref": "C:C", "width": 16},
+        {"ref": "D:D", "width": 18},
+        {"ref": "E:E", "width": 12},
+        {"ref": "F:F", "width": 48},
+        {"ref": "G:G", "width": 48},
+        {"ref": "H:H", "width": 16},
+        {"ref": "5:15", "height": 28},
+        {"ref": "A5:H15", "border": "thin", "wrap": true},
+        {"ref": "A5:H15", "when": "=$E5=\"Critical\"", "fill": "FFC7CE", "font_color": "9C0006"},
+        {"ref": "A5:H15", "when": "=$E5=\"High\"", "fill": "FFEB9C", "font_color": "9C5700"},
+        {"ref": "A5:H15", "when": "=$E5=\"Low\"", "fill": "C6EFCE", "font_color": "276221"},
+        {"ref": "A17", "bold": true, "font_size": 12, "font_color": "1F4E79"},
+        {"ref": "A18:D18", "fill": "D6E4F0", "font_color": "1F4E79", "bold": true},
+        {"ref": "A19:D23", "border": "thin", "wrap": true},
+        {"ref": "A:D", "width": 32}
+      ]
+    },
+    {
+      "name": "Function Matrix",
+      "freeze_panes": "A5",
+      "formats": [
+        {"ref": "A1", "bold": true, "font_size": 14, "font_color": "1F4E79"},
+        {"ref": "A2", "italic": true, "font_color": "595959", "font_size": 9},
+        {"ref": "A4:K4", "fill": "1F4E79", "font_color": "FFFFFF", "bold": true, "align": "center", "wrap": true},
+        {"ref": "A:A", "width": 14},
+        {"ref": "B:B", "width": 42},
+        {"ref": "C:C", "width": 12},
+        {"ref": "D:D", "width": 12},
+        {"ref": "E:E", "width": 10},
+        {"ref": "F:F", "width": 12},
+        {"ref": "G:G", "width": 10},
+        {"ref": "H:H", "width": 10},
+        {"ref": "I:I", "width": 10},
+        {"ref": "J:J", "width": 48},
+        {"ref": "K:K", "width": 8},
+        {"ref": "5:45", "height": 22},
+        {"ref": "A5:K45", "border": "thin", "wrap": true},
+        {"ref": "A5:K45", "when": "=$D5=\"Critical\"", "fill": "FFC7CE", "font_color": "9C0006"},
+        {"ref": "A5:K45", "when": "=$D5=\"Important\"", "fill": "FFEB9C", "font_color": "9C5700"},
+        {"ref": "A5:K45", "when": "=$D5=\"Beneficial\"", "fill": "C6EFCE", "font_color": "276221"}
+      ]
+    }
+  ]
+}

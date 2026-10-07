@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Enhanced z/OSMF Management Capabilities</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
+<link href="/fonts/Arvo/index.css" rel="stylesheet"/>
+<link href="/fonts/Inter/index.css" rel="stylesheet"/>
+<style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --color-primary: #1976D2;
+            --color-secondary: #0D47A1;
+            --color-accent: #42A5F5;
+            --headingBaseSize: 2.6rem;
+            --bodyBaseSize: 1.0rem;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            font-size: var(--bodyBaseSize);
+            font-weight: 400;
+            color: #333333;
+            background: linear-gradient(180deg, #FFFFFF 0%, #E3F2FD 100%);
+            overflow: hidden;
+        }
+
+        .slide-container {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            width: 100%;
+            background: linear-gradient(180deg, #FFFFFF 0%, #E3F2FD 100%);
+        }
+
+        .slide-header {
+            text-align: center;
+            padding: 2rem 3rem 1rem;
+        }
+
+        .slide-title {
+            font-family: 'Arvo', serif;
+            font-size: var(--headingBaseSize);
+            font-weight: 700;
+            color: var(--color-primary);
+            margin: 0;
+        }
+
+        .slide-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem 3rem;
+            overflow: hidden;
+        }
+
+        .text-block {
+            width: 100%;
+            max-width: 80vw;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .section-header {
+            font-family: 'Arvo', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--color-primary);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .custom-list {
+            margin-bottom: 2rem;
+        }
+
+        .list-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 0.75rem;
+            padding: 0.5rem 0;
+        }
+
+        .list-item i {
+            margin-right: 0.5rem;
+            font-size: 1.5em;
+            vertical-align: middle;
+            color: var(--color-accent);
+            margin-top: 0.1rem;
+            flex-shrink: 0;
+        }
+
+        .list-item span {
+            font-size: var(--bodyBaseSize);
+            line-height: 1.4;
+        }
+
+        .highlight-feature {
+            color: var(--color-primary);
+            font-weight: 600;
+        }
+
+        .benefit-text {
+            color: var(--color-secondary);
+            font-weight: 500;
+        }
+
+        .summary-note {
+            font-style: italic;
+            color: var(--color-secondary);
+            margin-top: 1rem;
+            padding: 0.75rem;
+            background: rgba(0,0,0,0.05);
+            border-radius: 0.5rem;
+            text-align: center;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            width: 100%;
+            max-width: 85vw;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-column {
+            padding: 1.5rem;
+        }
+
+        .column-header {
+            font-family: 'Arvo', serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--color-primary);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="slide-container">
+<div class="slide-header">
+<h1 class="slide-title">Enhanced z/OSMF Management Capabilities</h1>
+</div>
+<div class="slide-content">
+<div class="text-block">
+<h2 class="section-header">Streamlined IT Management &amp; Automation</h2>
+<div class="custom-list">
+<div class="list-item">
+<i class="fas fa-cogs"></i>
+<span><span class="highlight-feature">Automated Configuration</span> reduces manual steps required for software installations and system setup.</span>
+</div>
+<div class="list-item">
+<i class="fas fa-database"></i>
+<span><span class="highlight-feature">Data Administration</span> simplifies database management tasks with <span class="benefit-text">intelligent automation</span>.</span>
+</div>
+<div class="list-item">
+<i class="fas fa-shield-alt"></i>
+<span><span class="highlight-feature">Security Management</span> integrates RACF enhancements for streamlined access control and compliance.</span>
+</div>
+<div class="list-item">
+<i class="fas fa-chart-line"></i>
+<span><span class="highlight-feature">Performance Monitoring</span> provides real-time insights with <span class="benefit-text">AI-driven analytics</span>.</span>
+</div>
+</div>
+<div class="summary-note">
+<div><strong>Key Benefit:</strong> z/OSMF 3.2 reduces administrative overhead by up to 40% while improving system reliability and operational efficiency.</div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

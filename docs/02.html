@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Release Timeline &amp; Key Milestones</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<link href="/fonts/Arvo/index.css" rel="stylesheet"/>
+<link href="/fonts/Inter/index.css" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@2.0.0/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+<style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --color-primary: #1976D2;
+            --color-secondary: #0D47A1;
+            --heading-base-size: 2.6rem;
+            --body-base-size: 1rem;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            font-size: var(--body-base-size);
+            font-weight: 400;
+            color: #333333;
+            background: linear-gradient(180deg, #FFFFFF 0%, #E3F2FD 100%);
+            overflow: hidden;
+        }
+
+        .slide-container {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            width: 100%;
+            background: linear-gradient(180deg, #FFFFFF 0%, #E3F2FD 100%);
+        }
+
+        .slide-header {
+            text-align: center;
+            padding: 2rem 3rem 1rem;
+        }
+
+        .slide-title {
+            font-family: 'Arvo', serif;
+            font-size: var(--heading-base-size);
+            font-weight: 700;
+            color: var(--color-primary);
+            margin: 0;
+        }
+
+        .slide-content {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            padding: 1rem 3rem 2.5rem;
+            gap: 2rem;
+            overflow: hidden;
+        }
+
+        .content-left {
+            width: 50%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .content-right {
+            width: 50%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+
+        .chart-container {
+            width: 100%;
+            height: 55vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .text-block {
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-header {
+            font-family: 'Arvo', serif;
+            font-size: calc(var(--heading-base-size) * 0.7);
+            font-weight: 700;
+            color: var(--color-primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .custom-list {
+            margin-bottom: 2rem;
+        }
+
+        .list-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 0.75rem;
+            padding: 0.5rem 0;
+        }
+
+        .list-item i {
+            margin-right: 0.5rem;
+            font-size: 1.5em;
+            vertical-align: middle;
+            color: var(--color-primary);
+            margin-top: 0.1rem;
+        }
+
+        .list-item span {
+            flex: 1;
+            line-height: 1.4;
+        }
+
+        .highlight-date {
+            font-weight: 600;
+            color: var(--color-secondary);
+        }
+
+        .milestone-phase {
+            font-weight: 600;
+            color: var(--color-primary);
+        }
+
+        .summary-note {
+            font-style: italic;
+            color: var(--color-secondary);
+            margin-top: 1rem;
+            padding: 0.75rem;
+            background: rgba(0,0,0,0.05);
+            border-radius: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+<div class="slide-container">
+<div class="slide-header">
+<h1 class="slide-title">Release Timeline &amp; Key Milestones</h1>
+</div>
+<div class="slide-content">
+<div class="content-left">
+<div class="chart-container">
+<canvas id="timelineChart"></canvas>
+</div>
+</div>
+<div class="content-right">
+<div class="text-block">
+<h2 class="section-header">z/OS 3.2 Release Schedule</h2>
+<div class="custom-list">
+<div class="list-item">
+<i class="fas fa-calendar-check"></i>
+<span><span class="highlight-date">Q1 2025:</span> <span class="milestone-phase">Preview &amp; Early Access</span> - Technical preview available for select customers and partners.</span>
+</div>
+<div class="list-item">
+<i class="fas fa-cogs"></i>
+<span><span class="highlight-date">Q2 2025:</span> <span class="milestone-phase">Beta Testing Phase</span> - Comprehensive testing with enterprise customers and system integrators.</span>
+</div>
+<div class="list-item">
+<i class="fas fa-rocket"></i>
+<span><span class="highlight-date">September 2025:</span> <span class="milestone-phase">General Availability</span> - Full commercial release with complete feature set and support.</span>
+</div>
+<div class="list-item">
+<i class="fas fa-tools"></i>
+<span><span class="highlight-date">Q4 2025:</span> <span class="milestone-phase">Post-Launch Support</span> - Migration assistance, training programs, and ongoing enhancements.</span>
+</div>
+</div>
+<div class="summary-note">
+<div><strong>Key Insight:</strong> z/OS 3.2 represents IBM's most significant mainframe OS update, designed specifically for AI-driven workloads and hybrid cloud integration.</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+        const ctx = document.getElementById('timelineChart').getContext('2d');
+        
+        const timelineChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['Jan 2025', 'Mar 2025', 'Jun 2025', 'Sep 2025', 'Dec 2025'],
+                datasets: [{
+                    label: 'Development Progress',
+                    data: [25, 50, 75, 100, 100],
+                    borderColor: '#1976D2',
+                    backgroundColor: 'rgba(25, 118, 210, 0.1)',
+                    borderWidth: 3,
+                    fill: true,
+                    tension: 0.4,
+                    pointBackgroundColor: '#1976D2',
+                    pointBorderColor: '#FFFFFF',
+                    pointBorderWidth: 2,
+                    pointRadius: 6
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                layout: { padding: 0 },
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                const milestones = [
+                                    'Preview & Early Access',
+                                    'Beta Testing Phase',
+                                    'Feature Complete',
+                                    'General Availability',
+                                    'Post-Launch Support'
+                                ];
+                                return milestones[context.dataIndex] + ': ' + context.parsed.y + '%';
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        grid: {
+                            display: false
+                        },
+                        ticks: {
+                            color: '#333333',
+                            font: {
+                                size: 12
+                            }
+                        }
+                    },
+                    y: {
+                        beginAtZero: true,
+                        max: 100,
+                        grid: {
+                            color: 'rgba(0,0,0,0.1)'
+                        },
+                        ticks: {
+                            color: '#333333',
+                            font: {
+                                size: 12
+                            },
+                            callback: function(value) {
+                                return value + '%';
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

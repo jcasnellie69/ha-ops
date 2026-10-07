@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Migration Actions: PARMLIB Priority Checklist</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
+<link href="/fonts/Arvo/index.css" rel="stylesheet"/>
+<link href="/fonts/Inter/index.css" rel="stylesheet"/>
+<style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+        --color-primary: #1976D2;
+        --color-secondary: #0D47A1;
+        --color-accent: #42A5F5;
+        --headingBaseSize: 2.6rem;
+        --bodyBaseSize: 1.0rem;
+    }
+    body {
+        font-family: 'Inter', sans-serif;
+        font-size: var(--bodyBaseSize);
+        font-weight: 400;
+        color: #333333;
+        background: linear-gradient(180deg, #FFFFFF 0%, #E3F2FD 100%);
+        overflow: hidden;
+    }
+    .slide-container {
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        width: 100%;
+        background: linear-gradient(180deg, #FFFFFF 0%, #E3F2FD 100%);
+    }
+    .slide-header {
+        text-align: center;
+        padding: 1.5rem 3rem 0.5rem;
+    }
+    .slide-title {
+        font-family: 'Arvo', serif;
+        font-size: 2.0rem;
+        font-weight: 700;
+        color: var(--color-primary);
+        margin: 0;
+    }
+    .slide-content {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.5rem 2rem 1rem;
+        gap: 1.5rem;
+        overflow: hidden;
+    }
+    .col {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 0.6rem;
+        height: 100%;
+        max-height: 56vh;
+        overflow: hidden;
+    }
+    .col-header {
+        font-family: 'Arvo', serif;
+        font-size: 1.05rem;
+        font-weight: 700;
+        color: #fff;
+        padding: 0.4rem 0.8rem;
+        border-radius: 0.4rem;
+        text-align: center;
+    }
+    .col-header-red    { background: #C62828; }
+    .col-header-orange { background: #E65100; }
+    .col-header-green  { background: #2E7D32; }
+    .action-card {
+        background: #fff;
+        border-radius: 0.5rem;
+        padding: 0.5rem 0.7rem;
+        border-left: 4px solid #ccc;
+        display: flex;
+        flex-direction: column;
+        gap: 0.2rem;
+    }
+    .card-red    { border-left-color: #C62828; }
+    .card-orange { border-left-color: #E65100; }
+    .card-green  { border-left-color: #2E7D32; }
+    .card-member {
+        font-family: 'Courier New', monospace;
+        font-size: 0.72rem;
+        font-weight: 700;
+        color: var(--color-secondary);
+    }
+    .card-action {
+        font-size: 0.78rem;
+        line-height: 1.3;
+        color: #333;
+    }
+    .card-action strong { color: var(--color-primary); }
+    .card-tag {
+        font-size: 0.68rem;
+        font-weight: 600;
+        padding: 0.1rem 0.35rem;
+        border-radius: 0.25rem;
+        display: inline-block;
+        margin-top: 0.1rem;
+    }
+    .tag-ai    { background: #EDE7F6; color: #6A1B9A; }
+    .tag-qsc   { background: #E3F2FD; color: #1565C0; }
+    .tag-cloud { background: #E0F2F1; color: #00695C; }
+    .tag-core  { background: #FBE9E7; color: #BF360C; }
+    .bottom-note {
+        text-align: center;
+        font-size: 0.78rem;
+        font-style: italic;
+        color: var(--color-secondary);
+        padding: 0.4rem 2rem 0.6rem;
+        background: rgba(25,118,210,0.07);
+        border-top: 1px solid #BBDEFB;
+    }
+</style>
+</head>
+<body>
+<div class="slide-container">
+<div class="slide-header">
+<h1 class="slide-title">Migration Actions: PARMLIB Priority Checklist</h1>
+</div>
+<div class="slide-content">
+<!-- Column 1: Critical -->
+<div class="col">
+<div class="col-header col-header-red">🔴 Critical — Before First IPL</div>
+<div class="action-card card-red">
+<div class="card-member">BPXPRMxx</div>
+<div class="card-action">Remove all HFS params (BUFFERMONITOR, FIXED, RNODEWAIT, SYNCDEFAULT, WAITABEND, VIRTUAL). Add REXXPARSE if using REXX automation.</div>
+<span class="card-tag tag-cloud">Hybrid Cloud</span>
+</div>
+<div class="action-card card-red">
+<div class="card-member">IEASYSxx</div>
+<div class="card-action">Replace <strong>VRREGN= / VREALSZ=</strong> with <strong>REAL=nnnM</strong>. Leaving old params causes IPL failure on 3.2.</div>
+<span class="card-tag tag-core">Core</span>
+</div>
+<div class="action-card card-red">
+<div class="card-member">IEAOPTxx</div>
+<div class="card-action">Test <strong>CPENABLE=SYSTEM</strong> (new default) in non-prod LPAR. Review WLM service definitions and capacity automation for conflicts.</div>
+<span class="card-tag tag-ai">AI Workloads</span>
+</div>
+<div class="action-card card-red">
+<div class="card-member">CSFPRMxx (ICSF)</div>
+<div class="card-action">Enable <strong>PKCS11SUPPORT(ENABLE)</strong>. Set FIPSMODE(COMPAT). Activate ML-KEM-768, ML-DSA-65, SLH-DSA alongside classical algorithms.</div>
+<span class="card-tag tag-qsc">Quantum-Safe</span>
+</div>
+</div>
+<!-- Column 2: Important -->
+<div class="col">
+<div class="col-header col-header-orange">🟡 Important — Before Production</div>
+<div class="action-card card-orange">
+<div class="card-member">IRRPRMxx</div>
+<div class="card-action">Add <strong>REUSASID=YES</strong> to RACF START command. Enable User ID Containment (APAR OA67286). Add DSNRAUTH to SETROPTS RACLIST.</div>
+<span class="card-tag tag-qsc">Security</span>
+</div>
+<div class="action-card card-orange">
+<div class="card-member">IARPRMxx</div>
+<div class="card-action">Set <strong>RESTRICTPFTCADS</strong> to restrict PTFCADS to OS only. Evaluate <strong>ARR2V_REQAUTH</strong> to protect AI inference memory regions.</div>
+<span class="card-tag tag-ai">AI / Security</span>
+</div>
+<div class="action-card card-orange">
+<div class="card-member">SMFLIMxx</div>
+<div class="card-action">Configure <strong>CHECKREGIONABOVE</strong> to cap AI workload memory. Use IGNOREIEFUSI where IEFUSI exit conflicts with new limits.</div>
+<span class="card-tag tag-ai">AI Workloads</span>
+</div>
+<div class="action-card card-orange">
+<div class="card-member">DIAGxx</div>
+<div class="card-action">Set <strong>ASCBV31</strong> explicitly. Default behavior differs from prior releases; test in isolated LPAR before production IPL.</div>
+<span class="card-tag tag-core">Core</span>
+</div>
+</div>
+<!-- Column 3: Beneficial -->
+<div class="col">
+<div class="col-header col-header-green">🟢 Beneficial — Exploit New Capabilities</div>
+<div class="action-card card-green">
+<div class="card-member">CTnBPXxx</div>
+<div class="card-action">Increase <strong>BUFSIZE</strong> up to 2047 MB for AI model data and large UNIX workloads. Validate with AI framework memory requirements.</div>
+<span class="card-tag tag-ai">AI / Cloud</span>
+</div>
+<div class="action-card card-green">
+<div class="card-member">IZUPRMxx</div>
+<div class="card-action">Enable <strong>AUTOCONFIG(ENABLE)</strong> for new z/OSMF automation workflows. Reduces software install and OS config manual steps by ~40%.</div>
+<span class="card-tag tag-cloud">Hybrid Cloud</span>
+</div>
+<div class="action-card card-green">
+<div class="card-member">WLMPRMxx</div>
+<div class="card-action">Define dedicated service classes for AI inference workloads. Enable <strong>WLM Policy Advisor</strong> for AI-driven performance recommendations.</div>
+<span class="card-tag tag-ai">AI Workloads</span>
+</div>
+<div class="action-card card-green">
+<div class="card-member">COUPLExx / BPXPRMxx</div>
+<div class="card-action">Size CF structures for container workloads. Add ZFS mount points for Docker/zCX images. Verify MAXPROCSYS for AI daemon address spaces.</div>
+<span class="card-tag tag-cloud">Hybrid Cloud</span>
+</div>
+</div>
+</div>
+<div class="bottom-note">
+<strong>Recommended tool:</strong> Run z/OS Upgrade Workflow in z/OSMF to generate a personalized PARMLIB checklist for your specific installation configuration.
+    </div>
+</div>
+</body>
+</html>

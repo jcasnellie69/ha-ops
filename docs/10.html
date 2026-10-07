@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SYS1.PARMLIB Critical Changes: z/OS 2.5 → 3.1 → 3.2</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
+<link href="/fonts/Arvo/index.css" rel="stylesheet"/>
+<link href="/fonts/Inter/index.css" rel="stylesheet"/>
+<style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+        --color-primary: #1976D2;
+        --color-secondary: #0D47A1;
+        --color-accent: #42A5F5;
+        --headingBaseSize: 2.6rem;
+        --bodyBaseSize: 1.0rem;
+    }
+    body {
+        font-family: 'Inter', sans-serif;
+        font-size: var(--bodyBaseSize);
+        font-weight: 400;
+        color: #333333;
+        background: linear-gradient(180deg, #FFFFFF 0%, #E3F2FD 100%);
+        overflow: hidden;
+    }
+    .slide-container {
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        width: 100%;
+        background: linear-gradient(180deg, #FFFFFF 0%, #E3F2FD 100%);
+    }
+    .slide-header {
+        text-align: center;
+        padding: 1.5rem 3rem 0.5rem;
+    }
+    .slide-title {
+        font-family: 'Arvo', serif;
+        font-size: 2.0rem;
+        font-weight: 700;
+        color: var(--color-primary);
+        margin: 0;
+    }
+    .slide-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 0.5rem 2rem 1rem;
+        overflow: hidden;
+    }
+    .table-container {
+        width: 100%;
+        max-width: 95vw;
+        overflow: hidden;
+    }
+    .matrix-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.78rem;
+    }
+    .matrix-table .th-member {
+        background: var(--color-primary);
+        color: #fff;
+        font-family: 'Arvo', serif;
+        font-weight: 700;
+        padding: 0.45rem 0.6rem;
+        text-align: left;
+        width: 14%;
+    }
+    .matrix-table .th-ver {
+        background: var(--color-primary);
+        color: #fff;
+        font-family: 'Arvo', serif;
+        font-weight: 700;
+        padding: 0.45rem 0.5rem;
+        text-align: center;
+        width: 10%;
+    }
+    .matrix-table .th-change {
+        background: var(--color-primary);
+        color: #fff;
+        font-family: 'Arvo', serif;
+        font-weight: 700;
+        padding: 0.45rem 0.6rem;
+        text-align: left;
+        width: 32%;
+    }
+    .matrix-table .th-priority {
+        background: var(--color-primary);
+        color: #fff;
+        font-family: 'Arvo', serif;
+        font-weight: 700;
+        padding: 0.45rem 0.5rem;
+        text-align: center;
+        width: 10%;
+    }
+    .matrix-table .th-focus {
+        background: var(--color-primary);
+        color: #fff;
+        font-family: 'Arvo', serif;
+        font-weight: 700;
+        padding: 0.45rem 0.6rem;
+        text-align: left;
+        width: 24%;
+    }
+    .matrix-table td {
+        padding: 0.38rem 0.6rem;
+        border-bottom: 1px solid #BBDEFB;
+        vertical-align: middle;
+        line-height: 1.3;
+    }
+    .row-even { background: #F8FBFF; }
+    .row-odd  { background: #EEF5FF; }
+    .member-name {
+        font-family: 'Courier New', monospace;
+        font-weight: 700;
+        color: var(--color-secondary);
+        font-size: 0.75rem;
+    }
+    .ver-badge {
+        display: inline-block;
+        padding: 0.15rem 0.4rem;
+        border-radius: 0.3rem;
+        font-size: 0.72rem;
+        font-weight: 700;
+        text-align: center;
+    }
+    .ver-25  { background: #E3F2FD; color: #1565C0; }
+    .ver-31  { background: #FFF3E0; color: #E65100; }
+    .ver-32  { background: #E8F5E9; color: #2E7D32; }
+    .priority-critical { color: #C62828; font-weight: 700; font-size: 0.75rem; }
+    .priority-important { color: #E65100; font-weight: 700; font-size: 0.75rem; }
+    .priority-beneficial { color: #2E7D32; font-weight: 700; font-size: 0.75rem; }
+    .focus-ai    { color: #6A1B9A; font-weight: 600; }
+    .focus-qsc   { color: #1565C0; font-weight: 600; }
+    .focus-cloud { color: #00695C; font-weight: 600; }
+    .focus-core  { color: #4E342E; font-weight: 600; }
+    .legend-row {
+        display: flex;
+        gap: 1.5rem;
+        justify-content: center;
+        margin-top: 0.5rem;
+        font-size: 0.75rem;
+    }
+    .legend-item { display: flex; align-items: center; gap: 0.3rem; }
+</style>
+</head>
+<body>
+<div class="slide-container">
+<div class="slide-header">
+<h1 class="slide-title">SYS1.PARMLIB Critical Changes: z/OS 2.5 → 3.1 → 3.2</h1>
+</div>
+<div class="slide-content">
+<div class="table-container">
+<table class="matrix-table">
+<thead>
+<tr>
+<th class="th-member">Member</th>
+<th class="th-ver">Version</th>
+<th class="th-change">Key Change / Parameter</th>
+<th class="th-priority">Priority</th>
+<th class="th-focus">Focus Area</th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even">
+<td class="member-name">BPXPRMxx</td>
+<td><span class="ver-badge ver-32">3.2</span></td>
+<td>HFS params deleted (BUFFERMONITOR, FIXED, RNODEWAIT…); REXXPARSE added</td>
+<td class="priority-critical">🔴 Critical</td>
+<td class="focus-cloud">Hybrid Cloud / AI</td>
+</tr>
+<tr class="row-odd">
+<td class="member-name">IEAOPTxx</td>
+<td><span class="ver-badge ver-32">3.2</span></td>
+<td>CPENABLE default changed to SYSTEM (was OFF in 2.5 &amp; 3.1)</td>
+<td class="priority-critical">🔴 Critical</td>
+<td class="focus-ai">AI Workloads</td>
+</tr>
+<tr class="row-even">
+<td class="member-name">IEASYSxx</td>
+<td><span class="ver-badge ver-31">3.1</span></td>
+<td>REAL= introduced to replace VRREGN/VREALSZ</td>
+<td class="priority-critical">🔴 Critical</td>
+<td class="focus-core">Core / AI Memory</td>
+</tr>
+<tr class="row-odd">
+<td class="member-name">IEASYSxx</td>
+<td><span class="ver-badge ver-32">3.2</span></td>
+<td>VRREGN / VREALSZ fully removed — IPL failure if present</td>
+<td class="priority-critical">🔴 Critical</td>
+<td class="focus-core">Core / AI Memory</td>
+</tr>
+<tr class="row-even">
+<td class="member-name">CSFPRMxx (ICSF)</td>
+<td><span class="ver-badge ver-32">3.2</span></td>
+<td>NIST PQC GA: ML-KEM-768, ML-DSA-65, SLH-DSA; PKCS11SUPPORT(ENABLE)</td>
+<td class="priority-critical">🔴 Critical</td>
+<td class="focus-qsc">Quantum-Safe</td>
+</tr>
+<tr class="row-odd">
+<td class="member-name">IARPRMxx</td>
+<td><span class="ver-badge ver-32">3.2</span></td>
+<td>New: RESTRICTPFTCADS, ARR2V_REQAUTH</td>
+<td class="priority-important">🟡 Important</td>
+<td class="focus-ai">AI / Security</td>
+</tr>
+<tr class="row-even">
+<td class="member-name">IRRPRMxx</td>
+<td><span class="ver-badge ver-32">3.2</span></td>
+<td>REUSASID=YES recommended; RACF User ID Containment; DSNRAUTH class</td>
+<td class="priority-important">🟡 Important</td>
+<td class="focus-qsc">Security / QSC</td>
+</tr>
+<tr class="row-odd">
+<td class="member-name">DIAGxx</td>
+<td><span class="ver-badge ver-32">3.2</span></td>
+<td>New: ASCBV31 — ASCB 31-bit storage placement on START/ASCRE</td>
+<td class="priority-important">🟡 Important</td>
+<td class="focus-core">Core</td>
+</tr>
+<tr class="row-even">
+<td class="member-name">SMFLIMxx</td>
+<td><span class="ver-badge ver-32">3.2</span></td>
+<td>New: CHECKREGIONBELOW, CHECKREGIONABOVE, IGNOREIEFUSI</td>
+<td class="priority-important">🟡 Important</td>
+<td class="focus-ai">AI Workloads</td>
+</tr>
+<tr class="row-odd">
+<td class="member-name">CTnBPXxx</td>
+<td><span class="ver-badge ver-32">3.2</span></td>
+<td>BUFSIZE max increased to 2047 MB (was ~256 MB in 2.5)</td>
+<td class="priority-beneficial">🟢 Beneficial</td>
+<td class="focus-ai">AI / Cloud</td>
+</tr>
+<tr class="row-even">
+<td class="member-name">IZUPRMxx</td>
+<td><span class="ver-badge ver-32">3.2</span></td>
+<td>New z/OSMF automation workflows; AUTOCONFIG(ENABLE)</td>
+<td class="priority-beneficial">🟢 Beneficial</td>
+<td class="focus-cloud">Hybrid Cloud</td>
+</tr>
+</tbody>
+</table>
+<div class="legend-row">
+<div class="legend-item"><span class="ver-badge ver-25">2.5</span> z/OS 2.5</div>
+<div class="legend-item"><span class="ver-badge ver-31">3.1</span> z/OS 3.1</div>
+<div class="legend-item"><span class="ver-badge ver-32">3.2</span> z/OS 3.2</div>
+<div class="legend-item"><span class="focus-ai">■</span> AI Workloads</div>
+<div class="legend-item"><span class="focus-qsc">■</span> Quantum-Safe</div>
+<div class="legend-item"><span class="focus-cloud">■</span> Hybrid Cloud</div>
+<div class="legend-item"><span class="focus-core">■</span> Core</div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
