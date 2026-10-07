@@ -256,7 +256,7 @@ def parse_deprecated_sheet(ws) -> list[dict]:
             "Status":          status,
             "IPL Failure Risk": ipl,
             "Effort Estimate": d.get("Effort Estimate", ""),
-            "Risk Detail":     d.get("Risk / Detail", ""),
+            "Risk Detail":     d.get("Risk Detail") or d.get("Risk / Detail", ""),
             "Replacement / Action": d.get("Replacement / Action", ""),
         }
         labels = resolve_labels(impact, "", status, feature, ipl)
