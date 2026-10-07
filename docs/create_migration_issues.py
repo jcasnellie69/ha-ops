@@ -142,11 +142,11 @@ def resolve_sprint(priority: str, focus: str, ipl_risk: str) -> str:
         return "sprint-1"
     p = (priority or "").lower()
     f = (focus    or "").lower()
-    for key, sprint in SPRINT_BY_RISK.items():
-        if key in p:
-            return sprint
     for key, sprint in SPRINT_BY_FOCUS.items():
         if key in f:
+            return sprint
+    for key, sprint in SPRINT_BY_RISK.items():
+        if key in p:
             return sprint
     return "sprint-3"
 
