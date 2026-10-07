@@ -754,6 +754,9 @@ Examples:
         if args.project_id:
             print(f"  📋 View board:  https://github.com/orgs/{repo.split('/')[0]}/projects")
 
+    if failed:
+        sys.exit(1)
+
 
 if __name__ == "__main__":
     main()
