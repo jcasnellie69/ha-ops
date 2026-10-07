@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# D100726T0227 | HA-0001 | correct migration script paths | JC | ha-ops repo
 """
 z/OS 3.2 Migration — GitHub Issue & Project Board Automation
 =============================================================
@@ -8,16 +9,16 @@ assignments, labels, and full migration detail.
 
 Usage:
   # Dry run (preview only, no API calls)
-  python create_migration_issues.py --token $GH_TOKEN --repo owner/repo --dry-run
+  python docs/create_migration_issues.py --token $GH_TOKEN --repo owner/repo --dry-run
 
   # PARMLIB sheet only
-  python create_migration_issues.py --token $GH_TOKEN --repo owner/repo --sheets "PARMLIB Changes"
+  python docs/create_migration_issues.py --token $GH_TOKEN --repo owner/repo --sheets "PARMLIB Changes"
 
   # All sheets
-  python create_migration_issues.py --token $GH_TOKEN --repo owner/repo
+  python docs/create_migration_issues.py --token $GH_TOKEN --repo owner/repo
 
   # All sheets + add to Project board
-  python create_migration_issues.py --token $GH_TOKEN --repo owner/repo --project-id PVT_xxx
+  python docs/create_migration_issues.py --token $GH_TOKEN --repo owner/repo --project-id PVT_xxx
 
 Requirements:
   pip install openpyxl requests python-dotenv
@@ -573,18 +574,18 @@ def main():
         epilog="""
 Examples:
   # Dry run — preview everything
-  python create_migration_issues.py --token $GH_TOKEN --repo org/repo --dry-run
+  python docs/create_migration_issues.py --token $GH_TOKEN --repo org/repo --dry-run
 
   # PARMLIB sheet only
-  python create_migration_issues.py --token $GH_TOKEN --repo org/repo \\
+  python docs/create_migration_issues.py --token $GH_TOKEN --repo org/repo \\
     --sheets "PARMLIB Changes"
 
   # All sheets + project board
-  python create_migration_issues.py --token $GH_TOKEN --repo org/repo \\
+  python docs/create_migration_issues.py --token $GH_TOKEN --repo org/repo \\
     --project-id PVT_kgDOBxxxxxx
 
   # From .env file
-  python create_migration_issues.py --env-file .env
+  python docs/create_migration_issues.py --env-file .env
         """
     )
     parser.add_argument("--token",    help="GitHub Personal Access Token (or set GH_TOKEN env var)")

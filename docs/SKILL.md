@@ -3,6 +3,8 @@ name: zos-ipl-automation
 description: Automates the complete z/OS 3.2 post-IPL validation and migration management pipeline. Sets up GitHub Project board, creates migration issues from Excel, runs post-IPL validation checks (PARMLIB, RACF/ICSF, JES2, OMVS), auto-closes resolved IPL blockers, syncs to Jira, and generates a signed-off CAB migration completion report with a real-time dashboard. Use when teams need end-to-end z/OS 3.2 migration automation from GitHub board setup through production IPL sign-off.
 ---
 
+<!-- D100726T0227 | HA-0001 | correct migration script paths | JC | ha-ops repo -->
+
 # z/OS 3.2 Post-IPL Validation & Migration Automation
 
 ## Overview
@@ -28,11 +30,13 @@ Before running this workflow, ensure:
 
 ## Steps
 
+Run Steps 1–2 from the repository root.
+
 ### Step 1: Setup GitHub Project Board
 
 **Starting Step 1/4: Setup GitHub Project Board**
 
-python scripts/github-migration/setup_project_board.py --token $GH_TOKEN --repo $GH_REPO --org $GH_ORG --start-date 2026-10-01
+python docs/setup_project_board.py --token $GH_TOKEN --repo $GH_REPO --org $GH_ORG --start-date 2026-10-01
 
 This creates the GitHub Projects v2 board with:
 - 8 custom fields: Sprint (iteration), Priority, Component, Risk Level, IPL Blocker, Effort, Source Sheet, Notes
@@ -50,7 +54,7 @@ After completion, copy GH_PROJECT_ID from project_board_config.json to .env
 
 **Starting Step 2/4: Create Migration Issues from Excel**
 
-python scripts/github-migration/create_migration_issues.py --token $GH_TOKEN --repo $GH_REPO --project-id $GH_PROJECT_ID
+python docs/create_migration_issues.py --token $GH_TOKEN --repo $GH_REPO --project-id $GH_PROJECT_ID
 
 This parses all 3 sheets from the Excel workbook and creates ~78 GitHub Issues:
 - PARMLIB Changes: ~21 issues (Sprint 1-3 by risk level)

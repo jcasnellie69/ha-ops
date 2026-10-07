@@ -1,3 +1,4 @@
+# D100726T0227 | HA-0001 | correct migration script paths | JC | ha-ops repo
 # z/OS 3.2 Migration — GitHub Automation Scripts
 
 Two scripts to fully automate your GitHub Project board and issue creation
@@ -16,10 +17,11 @@ from the z/OS 3.2 Migration Risk Comparison Excel workbook.
 
 ## Quick Start
 
+Run all commands from the repository root.
+
 ### 1. Install dependencies
 ```bash
-cd scripts/github-migration
-pip install -r requirements.txt
+pip install -r docs/requirements.txt
 ```
 
 ### 2. Configure environment
@@ -33,7 +35,7 @@ set +a
 
 ### 3. Set up the Project board FIRST
 ```bash
-python setup_project_board.py \
+python docs/setup_project_board.py \
   --token $GH_TOKEN \
   --repo yourorg/zos-32-migration \
   --org yourorg \
@@ -44,7 +46,7 @@ python setup_project_board.py \
 
 ### 4. Create all migration issues
 ```bash
-python create_migration_issues.py \
+python docs/create_migration_issues.py \
   --token $GH_TOKEN \
   --repo yourorg/zos-32-migration \
   --project-id PVT_kgDOBxxxxxx    # from project_board_config.json
@@ -52,7 +54,7 @@ python create_migration_issues.py \
 
 ### 5. Dry run first (always recommended)
 ```bash
-python create_migration_issues.py \
+python docs/create_migration_issues.py \
   --token $GH_TOKEN \
   --repo yourorg/zos-32-migration \
   --dry-run
@@ -125,27 +127,27 @@ Add to `.vscode/tasks.json`:
     {
       "label": "Setup Project Board",
       "type": "shell",
-      "command": "python scripts/github-migration/setup_project_board.py --token ${env:GH_TOKEN} --repo ${env:GH_REPO} --org ${env:GH_ORG}",
+      "command": "python docs/setup_project_board.py --token ${env:GH_TOKEN} --repo ${env:GH_REPO} --org ${env:GH_ORG}",
       "group": "build",
       "presentation": { "reveal": "always", "panel": "new" }
     },
     {
       "label": "Create Issues — Dry Run",
       "type": "shell",
-      "command": "python scripts/github-migration/create_migration_issues.py --token ${env:GH_TOKEN} --repo ${env:GH_REPO} --dry-run",
+      "command": "python docs/create_migration_issues.py --token ${env:GH_TOKEN} --repo ${env:GH_REPO} --dry-run",
       "group": "build",
       "presentation": { "reveal": "always", "panel": "new" }
     },
     {
       "label": "Create Issues — PARMLIB Only",
       "type": "shell",
-      "command": "python scripts/github-migration/create_migration_issues.py --token ${env:GH_TOKEN} --repo ${env:GH_REPO} --sheets \"PARMLIB Changes\"",
+      "command": "python docs/create_migration_issues.py --token ${env:GH_TOKEN} --repo ${env:GH_REPO} --sheets \"PARMLIB Changes\"",
       "group": "build"
     },
     {
       "label": "Create All Issues",
       "type": "shell",
-      "command": "python scripts/github-migration/create_migration_issues.py --token ${env:GH_TOKEN} --repo ${env:GH_REPO} --project-id ${env:GH_PROJECT_ID}",
+      "command": "python docs/create_migration_issues.py --token ${env:GH_TOKEN} --repo ${env:GH_REPO} --project-id ${env:GH_PROJECT_ID}",
       "group": "build",
       "presentation": { "reveal": "always", "panel": "new" }
     }

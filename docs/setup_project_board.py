@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# D100726T0227 | HA-0001 | correct migration script paths | JC | ha-ops repo
 """
 z/OS 3.2 Migration — GitHub Projects v2 Board Setup
 =====================================================
@@ -11,16 +12,16 @@ Creates and configures a complete GitHub Projects v2 board with:
 
 Usage:
   # Interactive setup (prompts for org/user)
-  python setup_project_board.py --token $GH_TOKEN --repo owner/repo
+  python docs/setup_project_board.py --token $GH_TOKEN --repo owner/repo
 
   # Org-level project
-  python setup_project_board.py --token $GH_TOKEN --repo owner/repo --org myorg
+  python docs/setup_project_board.py --token $GH_TOKEN --repo owner/repo --org myorg
 
   # User-level project
-  python setup_project_board.py --token $GH_TOKEN --repo owner/repo --user myusername
+  python docs/setup_project_board.py --token $GH_TOKEN --repo owner/repo --user myusername
 
   # Dry run
-  python setup_project_board.py --token $GH_TOKEN --repo owner/repo --dry-run
+  python docs/setup_project_board.py --token $GH_TOKEN --repo owner/repo --dry-run
 
 Requirements:
   pip install requests python-dotenv
@@ -464,10 +465,10 @@ def generate_sprint_readme() -> str:
 
     lines.append("\n## Automation\n")
     lines.append("Issues are created automatically from the Excel workbook using:\n")
-    lines.append("```bash\npython scripts/github-migration/create_migration_issues.py \\\n")
+    lines.append("```bash\npython docs/create_migration_issues.py \\\n")
     lines.append("  --token $GH_TOKEN --repo owner/repo\n```\n")
     lines.append("\nProject board is configured using:\n")
-    lines.append("```bash\npython scripts/github-migration/setup_project_board.py \\\n")
+    lines.append("```bash\npython docs/setup_project_board.py \\\n")
     lines.append("  --token $GH_TOKEN --repo owner/repo --org myorg\n```\n")
 
     return "".join(lines)
@@ -482,16 +483,16 @@ def main():
         epilog="""
 Examples:
   # Org-level project (recommended for teams)
-  python setup_project_board.py --token $GH_TOKEN --repo myorg/zos-migration --org myorg
+  python docs/setup_project_board.py --token $GH_TOKEN --repo myorg/zos-migration --org myorg
 
   # User-level project
-  python setup_project_board.py --token $GH_TOKEN --repo myuser/zos-migration --user myuser
+  python docs/setup_project_board.py --token $GH_TOKEN --repo myuser/zos-migration --user myuser
 
   # Dry run
-  python setup_project_board.py --token $GH_TOKEN --repo myorg/zos-migration --org myorg --dry-run
+  python docs/setup_project_board.py --token $GH_TOKEN --repo myorg/zos-migration --org myorg --dry-run
 
   # Custom sprint start date
-  python setup_project_board.py --token $GH_TOKEN --repo myorg/zos-migration \\
+  python docs/setup_project_board.py --token $GH_TOKEN --repo myorg/zos-migration \\
     --org myorg --start-date 2026-10-01
         """
     )
@@ -802,7 +803,7 @@ Examples:
 
   🚀 Next steps:
   1. Run create_migration_issues.py to populate issues:
-     python scripts/github-migration/create_migration_issues.py \\
+     python docs/create_migration_issues.py \\
        --token $GH_TOKEN --repo {repo} \\
        --project-id {project_id}
 

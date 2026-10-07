@@ -68,3 +68,6 @@ Next action in-session: reboot CT 409 so its mp0/mp1 binds pick up the now-popul
 
 # D100626T2223 | HA-0001 | correct HFS-to-zFS migration action | JC | ha-ops repo
 Updated the HFS migration action in `docs/spec.json` and `docs/14.html` to use BPXWH2Z on the source release. No deployment performed. Validation and human review remain in-flight; next gate is `./validate.sh` and operator review.
+
+# D100726T0227 | HA-0001 | correct migration script paths | JC | ha-ops repo
+Updated migration script instructions and generated sprint-plan commands to use repository-root-relative `docs/` paths. No deployment performed. Targeted syntax, generated-content, and entry-point checks passed; `./validate.sh` remains blocked because `ansible-lint` is unavailable. Operator review remains the next gate.
